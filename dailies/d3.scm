@@ -2,7 +2,8 @@
 ;; name: ??????????
 ;; date: ??????????
 
-(load-from-path "/escnfs/home/cmc/public/paradigms/scheme/d3/paradigms_d3.scm")
+ (load-from-path "/escnfs/home/cmc/public/paradigms/scheme/d3/paradigms_d3.scm")
+;;
 (use-modules (ice-9 paradigms_d3))
 
 ;; double
@@ -10,7 +11,7 @@
   (lambda (n)
 		(cond
 			((zero? n) 0)
-			(else add1(add1(double(sub1 n))))
+			(else (add1 (add1 (double (sub1 n)))))
 		)
 	)
 )
