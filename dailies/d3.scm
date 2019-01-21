@@ -8,12 +8,12 @@
 ;; double
 (define double 
   (lambda (n)
-    n))
-    ;; right now double always returns the same number given to it
-    ;; make it return *double* that number
-    ;; remember that ``number'' means positive integer, for now
-    ;; use *only* the functions add1, sub1, and zero?
-    ;; do *not* use +, -, *, /, etc.
+		(cond
+			((zero? n) 0)
+			(else add1(add1(double(sub1 n))))
+		)
+	)
+)
 
 ;; tests!
 (display (double 9))
