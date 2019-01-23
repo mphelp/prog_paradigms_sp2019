@@ -9,7 +9,9 @@
   (lambda (n m lat)
 		(cond
 			((null? lat)'())
-			((and (number? (car lat))(and (>(car lat)(sub1 n))(<(car lat)(add1 m))))(cons (car lat)(filterN n m (cdr lat))))
+			((and (number? (car lat))
+				(and (>(car lat)(sub1 n))(<(car lat)(add1 m))))
+				(cons (car lat)(filterN n m (cdr lat))))
 			(else (filterN n m (cdr lat)))
 		)
  	)   
