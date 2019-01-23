@@ -7,7 +7,16 @@
 ;; filterN
 (define filterN
   (lambda (n m lat)
-    lat))
+		(cond
+			((null? lat) '())
+			((or (< n (car lat))(> m (car lat)))(filterN (n m (cdr lat))))
+			(else (cons (car lat)(filterN (n m (cdr lat)))))
+		)
+ 	)   
+)
+
+
+
     ;; currently this function just returns the lat as it is given
     ;; change the function so that it returns /only/ the numbers
     ;; >= n and <= m
