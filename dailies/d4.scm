@@ -8,19 +8,12 @@
 (define filterN
   (lambda (n m lat)
 		(cond
-			((null? lat) '())
-			((or (< n (car lat))(> m (car lat)))(filterN (n m (cdr lat))))
-			(else (cons (car lat)(filterN (n m (cdr lat)))))
+			((null? lat)'())
+			((and (number? (car lat))(and (>(car lat)(sub1 n))(<(car lat)(add1 m))))(cons (car lat)(filterN n m (cdr lat))))
+			(else (filterN n m (cdr lat)))
 		)
  	)   
 )
-
-
-
-    ;; currently this function just returns the lat as it is given
-    ;; change the function so that it returns /only/ the numbers
-    ;; >= n and <= m
-    ;; see below for examples...
 
 ;; tests!
 (display (filterN 4 6 '(1 turkey 5 9 4 bacon 6 cheese)))
