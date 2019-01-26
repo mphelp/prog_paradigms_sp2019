@@ -18,6 +18,12 @@
 )	)	)
 
 (define subset?
+	(lambda (s1 s2)
+		(cond
+			((null? s1) #t)
+			((member? (car s1) s2)(subset? (cdr s1) s2))
+			(else #f)
+)	)	)
 
 ;; data variables
 (define dict  '((t o m a t o) (f i r e) (s a u c e) (c h i c k e n) (f r i e d) (f l a m e s)))
