@@ -39,7 +39,7 @@
 		(cond 
 			((null? dict) '())
 			((subset? (car dict)(firsts words))(cons (car dict)(acronyms (cdr dict) words)))
-			(else (acronyms dict (cdr words))) 
+			(else (acronyms (cdr dict) words)) 
 )	)	)
 ;; your code here ;-)
 ;; be sure to build your code using the utility functions from above
