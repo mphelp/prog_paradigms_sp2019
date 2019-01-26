@@ -1,6 +1,6 @@
 ;; scheme daily homework 3
-;; name: ??????????
-;; date: ??????????
+;; name: Matthew Phelps
+;; date: Jan 21 2019
 
  (load-from-path "/escnfs/home/cmc/public/paradigms/scheme/d3/paradigms_d3.scm")
 ;;
