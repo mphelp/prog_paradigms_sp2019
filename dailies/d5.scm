@@ -3,8 +3,19 @@
 
 ;; utility functions, finish these first!
 (define firsts
+	(lambda (lat)
+		(cond
+			((null? lat) '())
+			(else (cons (car (car lat))(firsts (cdr lat))))
+)	)	)
 
 (define member?
+	(lambda (a lat)
+		(cond
+			((null? lat) #f)
+			((eq? a (car lat)) #t)
+			(else (member? a (cdr lat)))
+)	)	)
 
 (define subset?
 
