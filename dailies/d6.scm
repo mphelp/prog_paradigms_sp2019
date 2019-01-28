@@ -9,7 +9,7 @@
   (lambda (ttup)
     (cond
 			((null? ttup) 0)
-			((null? (cdr tup))(car (car ttup)))
+			((null? (cdr ttup))(car (car ttup)))
 			(else (+ (sum* (car (cdr ttup)))(sum* (cons (car ttup)(cdr (cdr ttup))))))
 )	)	)
 
