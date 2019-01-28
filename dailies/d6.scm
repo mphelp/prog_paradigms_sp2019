@@ -8,8 +8,8 @@
 (define sum*
   (lambda (ttup)
     (cond
-			((null? '()) + 0 1)
-
+			((null? ttup) 0)
+			(else (+ (car (car ttup))(sum* (cdr ttup))))
 )	)	)
 
 ;(install-trap (make <procedure-trap>
