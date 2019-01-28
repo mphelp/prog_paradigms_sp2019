@@ -8,8 +8,9 @@
 (define sum*
   (lambda (ttup)
     (cond
-	; YOUR CODE HERE :-)
+			((null? '()) + 0 1)
 
+)	)	)
 
 ;(install-trap (make <procedure-trap>
 ;                            #:procedure sum*
