@@ -3,19 +3,20 @@
 ;; date: Jan 28 2019
 
 ;; notice the use of debugging traps when available
-;; (use-modules (ice-9 debugging traps) (ice-9 debugging trace))
+;;(use-modules (ice-9 debugging traps) (ice-9 debugging trace))
 
 (define sum*
   (lambda (ttup)
     (cond
 			((null? ttup) 0)
-			(else (+ (car (car ttup))(sum* (cdr ttup))))
+			((null? (cdr tup))(car (car ttup)))
+			(else (+ (sum* (car (cdr ttup)))(sum* (cons (car ttup)(cdr (cdr ttup))))))
 )	)	)
 
-;(install-trap (make <procedure-trap>
-;                            #:procedure sum*
-;                            #:behaviour (list trace-trap trace-until-exit)))
-
+;;(install-trap (make <procedure-trap>
+;;                            #:procedure sum*
+;;                            #:behaviour (list trace-trap trace-until-exit)))
+;;
 ;; tests!
 (display (sum* '((5)) ))
 (display "\n")
