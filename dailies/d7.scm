@@ -34,21 +34,21 @@
 (display "\n")
 
 ;; tests for positionof
-(display (positionof 23 '(1 52 23 9)))
-(display "\n")
+;;(display (positionof 23 '(1 52 23 9)))
+;;(display "\n")
 
-(display (positionof 50 '(50 45 1 52 24 9 102)))
-(display "\n")
+;;(display (positionof 50 '(50 45 1 52 24 9 102)))
+;;(display "\n")
 
 ;; tests for value
-(display (value 'x '(x o e o x e e e x)))
-(display "\n")
+;;(display (value 'x '(x o e o x e e e x)))
+;;(display "\n")
 
-(display (value 'x '(o o o x x e e e e)))
-(display "\n")
+;;(display (value 'x '(o o o x x e e e e)))
+;;(display "\n")
 
-(display (value 'x '(o o e x x e e e e)))
-(display "\n")
+;;(display (value 'x '(o o e x x e e e e)))
+;;(display "\n")
 
 ;; correct output:
 ;;   $ guile d7.scm
