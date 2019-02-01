@@ -9,7 +9,7 @@
 (define greatest
   (lambda (tup)
 		(cond
-			((null? (cdr tup))(cdr tup))
+			((null? (cdr tup))(car tup))
 			((> (car tup)(greatest (cdr tup)))(car tup))
 			(else (greatest (cdr tup)))
 )	)	)
