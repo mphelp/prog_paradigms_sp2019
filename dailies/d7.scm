@@ -19,8 +19,10 @@
 ;; e.g., (positionof 23 (1 52 23 9)) -> 3
 (define positionof
   (lambda (n tup)
-    0))
-
+		(cond
+			((eq? n (car tup))'0)
+			(else (+ 1 (positionof n (cdr tup))))
+)	)	)
 ;; value
 ;; given a game state, return the value of that state:
 ;; 10 if it's a win
@@ -38,11 +40,11 @@
 (display "\n")
 
 ;; tests for positionof
-;;(display (positionof 23 '(1 52 23 9)))
-;;(display "\n")
+(display (positionof 23 '(1 52 23 9)))
+(display "\n")
 
-;;(display (positionof 50 '(50 45 1 52 24 9 102)))
-;;(display "\n")
+(display (positionof 50 '(50 45 1 52 24 9 102)))
+(display "\n")
 
 ;; tests for value
 ;;(display (value 'x '(x o e o x e e e x)))
