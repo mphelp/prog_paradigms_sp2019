@@ -8,7 +8,11 @@
 ;; return the greatest value in a tup, e.g., (1 3 2) -> 3
 (define greatest
   (lambda (tup)
-    0))
+		(cond
+			((null? (cdr tup))(cdr tup))
+			((> (car tup)(greatest (cdr tup)))(car tup))
+			(else (greatest (cdr tup)))
+)	)	)
 
 ;; positionof
 ;; you may assume that the given tup actually contains n
