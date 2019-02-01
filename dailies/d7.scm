@@ -28,9 +28,14 @@
 ;; 10 if it's a win
 ;; -10 if it's a loss
 ;; 0 if it is either a draw or not an ending state
+;; ... win? predicate is wildly helpful!
 (define value
   (lambda (p gs)
-    0))
+		(cond
+			((win? p gs)'10)
+			((win? (other p) gs)'-10)
+			(else '0)
+)	)	)
 
 ;; tests for greatest
 (display (greatest '(1 9 2)))
