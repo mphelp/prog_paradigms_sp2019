@@ -20,7 +20,7 @@
 (define positionof
   (lambda (n tup)
 		(cond
-			((eq? n (car tup))'0)
+			((eq? n (car tup))'1)
 			(else (+ 1 (positionof n (cdr tup))))
 )	)	)
 ;; value
