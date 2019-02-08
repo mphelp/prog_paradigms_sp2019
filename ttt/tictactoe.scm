@@ -42,15 +42,14 @@
 			(else (+ (sum*-g (car (cdr ttup)) f)(sum*-g (cons (car ttup)(cdr (cdr ttup))) f)))
 )	)	)
 
-;;(define valuex
-;;	(lambda (gs)
-;;		((value 'x) gs)
-;;)	)
 ;; MODIFY this function so that given the game tree 
 ;; (where the current situation is at the root),
 ;; it returns the recommendation for the next move
 (define nextmove
   (lambda (p gt)
+		(cond
+			
+
     (car gt)))
 
 ;; onegametree is defined in paradigms_ttt
@@ -77,7 +76,8 @@
 ;;   Current State:     (x o x o o e e x e)
 ;;   Recommended Move:  (x o x o o x e x e)
 
-(display (sum*-g (car (cdr (onegametree))) (value 'x)))
-(display "\n")
-(display (sum*-g (onegametree) (value 'o)))
-(display "\n")
+;; My additions:
+;;(display (sum*-g (car (cdr (onegametree))) (value 'x)))
+;;(display "\n")
+;;(display (sum*-g (onegametree) (value 'o)))
+;;(display "\n")
