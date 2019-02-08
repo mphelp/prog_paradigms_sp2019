@@ -41,29 +41,40 @@
 			((null? (cdr ttup))(f (car ttup)))
 			(else (+ (sum*-g (car (cdr ttup)) f)(sum*-g (cons (car ttup)(cdr (cdr ttup))) f)))
 )	)	)
-
+(define posgreatest
+	(lambda (tup)
+		(positionof (greatest tup))
+)	)
+(define sum*-children
+	(lambda (p gt)
+		(cond
+			((null? gt) '())
+			((null? (cdr gt)) '())
+			(else (cons (sum*-g (car (cdr gt)) (value p))(sum*-children p (cons (car gt)(cdr (cdr gt))))))
+)	)
 ;; MODIFY this function so that given the game tree 
 ;; (where the current situation is at the root),
 ;; it returns the recommendation for the next move
 (define nextmove
   (lambda (p gt)
 		(cond
+			((null? gt) '())
 			((null? (cdr gt))(car gt))	
-			(else 
+			(else (pick (positionof (greatest (sum*-children p gt))(sum*-children p gt))(cdr (firsts gt))))
 )	)	)
 
 ;; onegametree is defined in paradigms_ttt
 ;; be sure to look at that file!
 
 ;; what is the current game situation?
-;;(display "Current State:     ")
-;;(display (car (onegametree)))
-;;(display "\n")
+(display "Current State:     ")
+(display (car (onegametree)))
+(display "\n")
 
 ;; test of nextmove, where should we go next?
-;;(display "Recommended Move:  ")
-;;(display (nextmove 'x (onegametree)))
-;;(display "\n")
+(display "Recommended Move:  ")
+(display (nextmove 'x (onegametree)))
+(display "\n")
 
 ;;(display "testing value\n")
 ;;(display (car (car (cdr (onegametree)))))
@@ -82,7 +93,7 @@
 ;;(display (sum*-g (onegametree) (value 'o)))
 ;;(display "\n")
 ;; Testing stuff:
-(define mytup '(0 10 20 -10 -30))
-(display (pick (positionof (greatest mytup) mytup) mytup))
-(display "\n")
+;;(define mytup '(0 10 20 -10 -30))
+;;(display (pick (positionof (greatest mytup) mytup) mytup))
+;;(display "\n")
 
