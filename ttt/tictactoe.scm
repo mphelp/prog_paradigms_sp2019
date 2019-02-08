@@ -20,8 +20,8 @@
 (define positionof
   (lambda (a tup)
 		(cond
-			((eq? n (car tup))'1)
-			(else (+ 1 (positionof n (cdr tup))))
+			((eq? a (car tup))'1)
+			(else (+ 1 (positionof a (cdr tup))))
 )	)	)
 
 (define value
@@ -48,9 +48,9 @@
 (define nextmove
   (lambda (p gt)
 		(cond
-			
-
-    (car gt)))
+			((null? (cdr gt))(car gt))	
+			(else 
+)	)	)
 
 ;; onegametree is defined in paradigms_ttt
 ;; be sure to look at that file!
@@ -81,3 +81,8 @@
 ;;(display "\n")
 ;;(display (sum*-g (onegametree) (value 'o)))
 ;;(display "\n")
+;; Testing stuff:
+(define mytup '(0 10 20 -10 -30))
+(display (pick (positionof (greatest mytup) mytup) mytup))
+(display "\n")
+
