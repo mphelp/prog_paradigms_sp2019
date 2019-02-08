@@ -41,17 +41,14 @@
 			((null? (cdr ttup))(f (car ttup)))
 			(else (+ (sum*-g (car (cdr ttup)) f)(sum*-g (cons (car ttup)(cdr (cdr ttup))) f)))
 )	)	)
-(define posgreatest
-	(lambda (tup)
-		(positionof (greatest tup))
-)	)
+;; New helper func:
 (define sum*-children
 	(lambda (p gt)
 		(cond
 			((null? gt) '())
 			((null? (cdr gt)) '())
 			(else (cons (sum*-g (car (cdr gt)) (value p))(sum*-children p (cons (car gt)(cdr (cdr gt))))))
-)	)
+)	)	)
 ;; MODIFY this function so that given the game tree 
 ;; (where the current situation is at the root),
 ;; it returns the recommendation for the next move
@@ -86,14 +83,4 @@
 ;;   $ guile tictactoe.scm
 ;;   Current State:     (x o x o o e e x e)
 ;;   Recommended Move:  (x o x o o x e x e)
-
-;; My additions:
-;;(display (sum*-g (car (cdr (onegametree))) (value 'x)))
-;;(display "\n")
-;;(display (sum*-g (onegametree) (value 'o)))
-;;(display "\n")
-;; Testing stuff:
-;;(define mytup '(0 10 20 -10 -30))
-;;(display (pick (positionof (greatest mytup) mytup) mytup))
-;;(display "\n")
 
