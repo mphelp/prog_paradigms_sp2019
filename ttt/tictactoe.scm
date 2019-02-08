@@ -36,10 +36,11 @@
 ;; MODIFY your sum* function for this assignment...
 (define sum*-g
   (lambda (ttup f)
-		((null? ttup) 0)
-		((null? (cdr ttup))(f (car ttup)))
-		(else (+ (sum*-g (car (cdr ttup)))(sum*-g (cons (car ttup)(cdr (cdr ttup))))))
-)	)
+		(cond
+			((null? ttup) 0)
+			((null? (cdr ttup))(f (car ttup)))
+			(else (+ (sum*-g (car (cdr ttup)) f)(sum*-g (cons (car ttup)(cdr (cdr ttup))) f)))
+)	)	)
 
 ;;(define valuex
 ;;	(lambda (gs)
@@ -65,15 +66,18 @@
 ;;(display (nextmove 'x (onegametree)))
 ;;(display "\n")
 
-(display "testing value\n")
-(display (car (car (cdr (onegametree)))))
-(display "\n")
-(display ((value 'x) (car (car (cdr (onegametree))))))
+;;(display "testing value\n")
+;;(display (car (car (cdr (onegametree)))))
+;;(display "\n")
+;;(display ((value 'o) (car (car (cdr (onegametree))))))
 ;;(display (sum*-g (onegametree) (value 'x)))
-(display "\n")
+;;(display "\n")
 ;; correct output:
 ;;   $ guile tictactoe.scm
 ;;   Current State:     (x o x o o e e x e)
 ;;   Recommended Move:  (x o x o o x e x e)
 
-
+(display (sum*-g (car (cdr (onegametree))) (value 'x)))
+(display "\n")
+(display (sum*-g (onegametree) (value 'o)))
+(display "\n")
