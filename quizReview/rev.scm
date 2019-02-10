@@ -1,6 +1,5 @@
-(load-from-path "/escnfs/home/cmc/public/paradigms/scheme/d1/paradigms_d1.scm")
+(include "/escnfs/home/cmc/public/paradigms/scheme/d1/paradigms_d1.scm")
 ;;
-(use-modules (ice-9 paradigms_d3))
 
 ;; 1
 (define occur*
