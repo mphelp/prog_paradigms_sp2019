@@ -12,7 +12,8 @@
 			(else (+ (occur* a (car l))(occur* a (cdr l))))
 )	)	)
 
-
+;; 2
+(define equaltree '())
 
 
 
