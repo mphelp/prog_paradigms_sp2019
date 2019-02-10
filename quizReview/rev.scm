@@ -6,11 +6,10 @@
 	(lambda (a l)
 		(cond
 			((null? l) 0)
-			((lat? l)(cond
-					((null? l) 0)
+			((atom? (car l))(cond
 					((eq? a (car l))(+ 1 (occur* a (cdr l))))
 					(else (occur* a (cdr l)))))
-			(else + (occur* a (car l))(occur* a (cdr l)))
+			(else (+ (occur* a (car l))(occur* a (cdr l))))
 )	)	)
 
 
@@ -19,12 +18,11 @@
 
 
 ;; Tests
-(define mylist '((car)))
+(define mylist '((car) car (((y car)))))
+(define myanswer 3)
 (define test1 
 	(cond
-		((eq? 1 (occur* 'car mylist ))'(1 occur* works))
+		((eq? myanswer (occur* 'car mylist ))'(1 occur* works))
 		(else '(1 occur* fails))))
-(display (occur* 'car mylist)) 
-(display "\n")
 (display test1)
 (display "\n")
