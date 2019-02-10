@@ -19,9 +19,12 @@
 
 
 ;; Tests
+(define mylist '((car)))
 (define test1 
 	(cond
-		((eq? 2 (occur* 'car '(car y y car u)))'(1 occur* works))
+		((eq? 1 (occur* 'car mylist ))'(1 occur* works))
 		(else '(1 occur* fails))))
+(display (occur* 'car mylist)) 
+(display "\n")
 (display test1)
 (display "\n")
