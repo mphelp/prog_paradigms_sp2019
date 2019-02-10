@@ -13,12 +13,22 @@
 )	)	)
 
 ;; 2
-(define equaltree '())
+(define equaltree?
+	(lambda (t1 t2)
+		(cond
+			((and	(null? t1)(null? t2)) #t)
+			((and (null? (car t1))(null? (car t2)))(equaltree? (cdr t1)(cdr t2)))
+			((and (atom? (car t1))(atom? (car t2)))(cond
+					((eq? (car t1)(car t2))(equaltree? (cdr t1)(cdr t2)))
+					(else #f)))
+			(else (and (equaltree? (car t1)(car t2))(equaltree? (cdr t1)(cdr t2))))
+)	)	)
 
 
 
 
 ;; Tests
+;; 1
 (define mylist '((car) car (((y car)))))
 (define myanswer 3)
 (define test1 
@@ -27,3 +37,13 @@
 		(else '(1 occur* fails))))
 (display test1)
 (display "\n")
+;; 2
+(define mylist1 '(() car (who)))
+(define mylist2 '(() car (who)))
+(define test2 
+	(cond
+		((equaltree? mylist1 mylist2)'(2 equaltree works))
+		(else '(2 equaltree fails))))
+(display test2)
+(display "\n")
+
