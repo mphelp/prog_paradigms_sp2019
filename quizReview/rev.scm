@@ -66,7 +66,16 @@
 			((zero? (sub1 n))(car lat))
 			(else (pick (sub1 n)(cdr lat)))
 )	)	)
-;; 10
+;; 9
+(define insertR*
+	(lambda (a b l)
+		(cond
+			((null? l)'())
+			((atom? (car l))(cond
+					((eq? a (car l))(cons (car l)(cons b (insertR* a b (cdr l)))))
+					(else (cons (car l)(insertR* a b (cdr l))))))
+			(else (cons (insertR* a b (car l))(insertR* a b (cdr l))))
+)	)	)
 
 
 ;; Tests
@@ -112,7 +121,16 @@
 ;; 8
 (define test8
 	(cond
-		((eq? 'duck (pick 3 '(who is duck mcgee)))'(6 pick works))
-		(else '(6 pick fails))))
+		((eq? 'duck (pick 3 '(who is duck mcgee)))'(8 pick works))
+		(else '(8 pick fails))))
 (display test8)
+(display "\n")
+;; 9
+(define mything '(ben (h (ben))))
+(define mythingans '(ben major (h (ben major))))
+(define test9
+	(cond
+		((equaltree? mythingans (insertR* 'ben 'major mything))'(9 insertR* works))
+		(else '(9 insertR* fails))))
+(display test9)
 (display "\n")
