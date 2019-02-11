@@ -48,7 +48,17 @@
 			(else (cons (car lat) (makeset (cdr lat))))
 )	)	)
 ;; 5
-
+(define addup
+	(lambda (tup)
+		(cond
+			((null? tup) 0)
+			(else (+ (car tup)(addup (cdr tup)))))))
+(define addtups
+	(lambda (l)
+		(cond
+			((null? l) '())
+			(else (cons (addup (car l))(addtups (cdr l))))
+)	)	)
 
 
 ;; Tests
@@ -83,4 +93,11 @@
 		((equaltree? '(3) (makeset '(3 3)))'(4 makeset works))
 		(else '(4 makeset fails))))
 (display test4)
+(display "\n")
+;; 5
+(define test5
+	(cond
+		((equaltree? '(4 5 6) (addtups '((3 1)(0 5)(4 2))))'(6 addtups works))
+		(else '(6 addtups fails))))
+(display test5)
 (display "\n")
