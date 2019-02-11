@@ -47,7 +47,7 @@
 			((member? (car lat) (cdr lat))(makeset (cdr lat)))
 			(else (cons (car lat) (makeset (cdr lat))))
 )	)	)
-;; 5
+;; 6
 (define addup
 	(lambda (tup)
 		(cond
@@ -59,6 +59,14 @@
 			((null? l) '())
 			(else (cons (addup (car l))(addtups (cdr l))))
 )	)	)
+;; 8
+(define pick
+	(lambda (n lat)
+		(cond
+			((zero? (sub1 n))(car lat))
+			(else (pick (sub1 n)(cdr lat)))
+)	)	)
+;; 10
 
 
 ;; Tests
@@ -94,10 +102,17 @@
 		(else '(4 makeset fails))))
 (display test4)
 (display "\n")
-;; 5
-(define test5
+;; 6
+(define test6
 	(cond
 		((equaltree? '(4 5 6) (addtups '((3 1)(0 5)(4 2))))'(6 addtups works))
 		(else '(6 addtups fails))))
-(display test5)
+(display test6)
+(display "\n")
+;; 8
+(define test8
+	(cond
+		((eq? 'duck (pick 3 '(who is duck mcgee)))'(6 pick works))
+		(else '(6 pick fails))))
+(display test8)
 (display "\n")
