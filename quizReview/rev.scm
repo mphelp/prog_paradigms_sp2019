@@ -77,6 +77,12 @@
 			(else (cons (insertR* a b (car l))(insertR* a b (cdr l))))
 )	)	)
 
+;; 11
+(define zip
+	(lambda (t1 t2)
+		(cons (cons (car t1)(list (car t2)))(list (cons (car (cdr t1))(cdr t2))))
+)	)
+
 
 ;; Tests
 ;; 1
@@ -133,4 +139,14 @@
 		((equaltree? mythingans (insertR* 'ben 'major mything))'(9 insertR* works))
 		(else '(9 insertR* fails))))
 (display test9)
+(display "\n")
+;; 11
+(define before1 '(peas butter))
+(define before2 '(carrots toast))
+(define after  '((peas carrots)(butter toast)))
+(define test11
+	(cond
+	((equaltree? after (zip before1 before2))'(11 zip works))
+		(else '(11 zip fails))))
+(display test11)
 (display "\n")
