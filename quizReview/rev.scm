@@ -23,7 +23,16 @@
 					(else #f)))
 			(else (and (equaltree? (car t1)(car t2))(equaltree? (cdr t1)(cdr t2))))
 )	)	)
-
+;; 3
+(define sub1
+	(lambda (a)
+		(- a 1)))
+(define x
+	(lambda (n1 n2)
+		(cond
+			((zero? n2) 0)
+			(else (+ n1 (x (sub1 n2) n1)))
+)	)	)
 
 
 
@@ -46,4 +55,10 @@
 		(else '(2 equaltree fails))))
 (display test2)
 (display "\n")
-
+;; 3
+(define test3
+	(cond
+		((eq? 10 (x 5 2))'(3 x works))
+		(else '(3 x fails))))
+(display test3)
+(display "\n")
