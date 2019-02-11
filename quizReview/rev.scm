@@ -33,6 +33,21 @@
 			((zero? n2) 0)
 			(else (+ n1 (x (sub1 n2) n1)))
 )	)	)
+;; 4
+(define member?
+	(lambda (a lat)
+		(cond
+			((null? lat) #f)
+			((eq? a (car lat)) #t)
+			(else (member? a (cdr lat))))))
+(define makeset
+	(lambda (lat)
+		(cond	
+			((null? lat)'())
+			((member? (car lat) (cdr lat))(makeset (cdr lat)))
+			(else (cons (car lat) (makeset (cdr lat))))
+)	)	)
+;; 5
 
 
 
@@ -61,4 +76,11 @@
 		((eq? 10 (x 5 2))'(3 x works))
 		(else '(3 x fails))))
 (display test3)
+(display "\n")
+;; 4
+(define test4
+	(cond
+		((equaltree? '(3) (makeset '(3 3)))'(4 makeset works))
+		(else '(4 makeset fails))))
+(display test4)
 (display "\n")
