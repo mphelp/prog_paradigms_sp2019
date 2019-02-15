@@ -4,9 +4,15 @@
 MEMLIMIT = 10
 
 
-def join(myre, newExpr):
-    if !isinstance(myre, list) or !isinstance(newExpr, list):
-        print(f"ERROR: Expression parsed not a list: {newExpr}")
+def join(newExpr, myre):
+    if not isinstance(myre, list) or not isinstance(newExpr, list):
+        print("ERROR: Expression parsed not a list")
+    for option in newExpr:
+        if len(myre) == 0:
+            myre.append(option)
+        else:
+            for regex in myre:
+                regex.append(option)
 
 def plus(q):
     p = []
@@ -26,10 +32,12 @@ def dot():
     return [c for c in "abcdefghijklmnopqrstuvwxyz"]
 def add(expr, myre):
     if isinstance(expr, str):
-        myre.append([expr])
+        join([expr], myre) 
     else:
-        myre.append(expr)
-
+        join(expr, myre) 
 
 if __name__ == '__main__':
-    
+    myre = []
+    add("a", myre)
+    add(star("b"), myre) 
+    print(myre)
