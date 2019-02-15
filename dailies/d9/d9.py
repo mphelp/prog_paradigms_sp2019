@@ -3,7 +3,11 @@
 # Globals
 MEMLIMIT = 10
 
-myre = []
+
+def join(myre, newExpr):
+    if !isinstance(myre, list) or !isinstance(newExpr, list):
+        print(f"ERROR: Expression parsed not a list: {newExpr}")
+
 def plus(q):
     p = []
     chars = ""
@@ -12,13 +16,20 @@ def plus(q):
         p.append(chars)
     return p
 def star(q):
-    p = []
+    s = []
     chars = ""
     for i in range(MEMLIMIT):
-        p.append(chars)
+        s.append(chars)
         chars += q
-    return p
+    return s
+def dot():
+    return [c for c in "abcdefghijklmnopqrstuvwxyz"]
+def add(expr, myre):
+    if isinstance(expr, str):
+        myre.append([expr])
+    else:
+        myre.append(expr)
+
 
 if __name__ == '__main__':
-    print(plus("4"))
-    print(star("4"))
+    
