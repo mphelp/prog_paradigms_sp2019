@@ -3,7 +3,7 @@
 # Globals
 MEMLIMIT = 10
 
-# Functions
+# Functions before evil
 def plus(q):
     p = []
     chars = ""
@@ -45,7 +45,16 @@ def join(newExpr, myre):
 def match(str, myre):
     return str in myre
 
+# Functions after evil
+def matchEvil(s, myre2):
+    if not isinstance(s, str) or not isinstance(myre2, str):
+        print('One arg in matchevil is not string')
+
+def addEvil(s, myre2):
+    return myre2 + s
+
 if __name__ == '__main__':
+    # Before evil
     myre = []
     myre = add(plus("cat"), myre)
     myre = add(dot(), myre)
@@ -54,3 +63,8 @@ if __name__ == '__main__':
     myre = add(star("g"), myre)
     print(match("catcatQdogggggg", myre))
     print(match("turkeybaconcheese", myre))
+
+    # After evil
+    myre2 = ""
+    # print(matchEvil("acatcatccatcatdcatccatcatdcatccatcatd", myre2))
+    print(addEvil("who",myre2))
