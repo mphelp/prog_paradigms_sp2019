@@ -52,6 +52,11 @@ def matchEvil(s, myre2):
 
 def addEvil(s, myre2):
     return myre2 + s
+def evil(s, myre2):
+    thiscount = myre2.count(s)
+    for i in range(thiscount):
+        myre2 += s
+    return myre2
 
 if __name__ == '__main__':
     # Before evil
@@ -67,4 +72,10 @@ if __name__ == '__main__':
     # After evil
     myre2 = ""
     # print(matchEvil("acatcatccatcatdcatccatcatdcatccatcatd", myre2))
-    print(addEvil("who",myre2))
+    # regex3 = evil(addEvil("x",evil("w",addEvil("a",addEvil("w",myre2)))), 
+    #               addEvil("a",addEvil("w",myre2)))
+    regex2 = addEvil("x",evil("w",addEvil("a",addEvil("w",addEvil("w",myre2)))))
+    print(regex2)
+
+
+
