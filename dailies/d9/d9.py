@@ -49,14 +49,18 @@ def match(str, myre):
 def matchEvil(s, myre2):
     if not isinstance(s, str) or not isinstance(myre2, str):
         print('One arg in matchevil is not string')
+    return s == myre2
 
+# addEvil("ab","c") -> "cab"
 def addEvil(s, myre2):
     return myre2 + s
+# evil("g","goggle") -> "ggg"
 def evil(s, myre2):
+    s2 = ""
     thiscount = myre2.count(s)
     for i in range(thiscount):
-        myre2 += s
-    return myre2
+        s2 += s
+    return s2
 
 if __name__ == '__main__':
     # Before evil
@@ -71,11 +75,13 @@ if __name__ == '__main__':
 
     # After evil
     myre2 = ""
-    # print(matchEvil("acatcatccatcatdcatccatcatdcatccatcatd", myre2))
-    # regex3 = evil(addEvil("x",evil("w",addEvil("a",addEvil("w",myre2)))), 
-    #               addEvil("a",addEvil("w",myre2)))
-    regex2 = addEvil("x",evil("w",addEvil("a",addEvil("w",addEvil("w",myre2)))))
-    print(regex2)
-
-
+    regex1 = addEvil("acat",myre2)
+    regex2 = evil("cat",regex1)
+    regex3 = addEvil("c",addEvil(regex2,regex1))
+    regex4 = evil("cat", regex3)
+    regex5 = addEvil("d",addEvil(regex4,addEvil("c",addEvil(regex2,myre2))))
+    regex6 = evil(regex5, addEvil(regex5, addEvil(regex5, addEvil(regex5, regex1))))
+    regex7 = addEvil(regex6, regex1)
+    
+    print(matchEvil("acatcatccatcatdcatccatcatdcatccatcatd",regex7))
 
