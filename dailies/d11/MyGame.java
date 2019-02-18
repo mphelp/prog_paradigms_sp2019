@@ -1,3 +1,5 @@
+// Name: Matthew Phelps
+// Date: Feb 17 2019
 import edu.nd.cse.paradigms.*;
 import java.util.List;
 import java.util.ArrayList;
