@@ -1,3 +1,5 @@
+// Name: Matthew Phelps
+// Date: Feb 21 2019
 import edu.nd.cse.paradigms.*;
 
 public abstract class Collider{
