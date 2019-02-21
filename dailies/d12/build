@@ -1,0 +1,1 @@
+javac -cp .:paradigms_v1_1_rel.jar *.java
