@@ -27,7 +27,7 @@ public class MyGame extends PEGame {
 	public void collisionDetected(List<PEWorldObject> worldObjects){
 		int i = 0;
 		for (PEWorldObject wo: worldObjects){
-			collider.processCollision(wo, worldObjects[i]);
+			collider.processCollision(wo, worldObjects.get(i));
 			i++;
 		}
 	}

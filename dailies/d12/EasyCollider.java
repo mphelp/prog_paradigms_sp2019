@@ -1,5 +1,7 @@
+import edu.nd.cse.paradigms.*;
+
 public class EasyCollider extends Collider{
-	public EasyCollider(PEEngine){
+	public EasyCollider(PEEngine engine){
 		super(engine);
 	}
 	public void processCollision(PECircle c, PEWorldObject wo){
