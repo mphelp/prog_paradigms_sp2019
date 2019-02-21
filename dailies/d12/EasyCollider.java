@@ -5,7 +5,7 @@ public class EasyCollider extends Collider{
 		super(engine);
 	}
 	public void processCollision(PECircle c, PEWorldObject wo){
-		System.out.println("Circle destroyed");
+		System.out.println("Circle destroyed! oh no! that was intended");
 		engine.remove(c);
 	}
 }

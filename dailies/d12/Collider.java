@@ -8,7 +8,7 @@ public abstract class Collider{
 	public abstract void processCollision(PECircle c, PEWorldObject wo);
 	public void processCollision(PEWorldObject wo1, PEWorldObject wo2){
 		if (wo1 instanceof PECircle){
-			processCollision(wo1, wo2);
+			processCollision((PECircle)wo1, wo2);
 		} else {
 			System.out.println("not defined "+wo1.getClass().getName());
 		}

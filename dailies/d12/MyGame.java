@@ -27,10 +27,9 @@ public class MyGame extends PEGame {
 	public void collisionDetected(List<PEWorldObject> worldObjects){
 		int i = 0;
 		for (PEWorldObject wo: worldObjects){
-			//collider.processCollision(wo, worldObjects.get(i));
+			collider.processCollision(wo, worldObjects.get(i));
 			i++;
 		}
-		System.out.println(i);
 	}
 	public void keyPressed(int keycode){
 		int x = circle.getX();
