@@ -14,21 +14,27 @@ public class MyGame extends PEGame {
 		// TODO: Add target
 
 		// TODO: Add enemies
-		// Enemy enemy1 = new Enemy(50,30,10,300,true)
+		Enemy enemy1 = new Enemy(50,30,20,
+				10,300,-1,1,1);
+		Enemy enemy2 = new Enemy(80,30,30,
+				10,300, 1,1,1);
 		// 
 
-		// circle = new PECircle();
-		// circle.setRadius(25);
-		// circle.setCenter(100,100);
+		// TODO: Player
+		circle = new PECircle();
+		circle.setRadius(25);
+		circle.setCenter(100,100);
 		// square = new PESquare();
 		// square.setCenter(150,150);
 		// square.setSize(40);
 
 		// Adding to engine
-		// engine.add(circle);
+		engine.add(circle);
 		// engine.add(square);
 
 		
+		engine.add(enemy1);
+		engine.add(enemy2);
 
 		// Collider
 		collider = new EasyCollider(engine);
@@ -64,7 +70,7 @@ public class MyGame extends PEGame {
 	private Enemy enemy1;
 	private Enemy enemy2;
 	protected PEEngine engine;
-	// private PECircle circle;
+	private PECircle circle;
 	protected EasyCollider collider;
 	// private PESquare square;	
 }
