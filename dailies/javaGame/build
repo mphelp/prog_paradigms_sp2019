@@ -1,2 +1,2 @@
-javac -cp .:paradigms_v1_1_rel.jar *.java
+javac -cp .:paradigms_v1_2_rel.jar *.java
 
