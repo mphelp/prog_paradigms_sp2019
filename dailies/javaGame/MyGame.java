@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class MyGame extends PEGame {
 	public void start(){
 		// Definitions
-		engine = new PEEngine(this);
+		engine = new PEEngine(this, 100);
 
 		// TODO: Add player
 
