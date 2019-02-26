@@ -7,7 +7,7 @@ public class Target extends PESquare {
 
 	Target(Player p){
 		setCenter(p.getX(), p.getY());
-		setColor(new Color(200, 0, 0)); // red target
+		setColor(0xEE0000); // red target
 		//testing
 		System.out.println("Target created");
 	}
