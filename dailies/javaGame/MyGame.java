@@ -41,6 +41,7 @@ public class MyGame extends PEGame {
 			collider.processCollision(wo, worldObjects.get(i));
 			i++;
 		}
+		System.out.println("number of world objects: "+i);
 	}
 	public void keyPressed(int keycode){
 		int px = player.getX();
@@ -91,5 +92,4 @@ public class MyGame extends PEGame {
 
 	protected EasyCollider collider;
 	protected PEEngine engine;
-	// private PESquare square;	
 }

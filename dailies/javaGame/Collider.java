@@ -10,17 +10,16 @@ public abstract class Collider{
 	// 
 	// public abstract void processCollision(Player pl, PEWorldObject wo);
 	// public abstract void processCollision(Enemy e, PEWorldObject wo);
-	public abstract void processCollision(Projectile pr, Enemy e);
+	public abstract void processCollision(Projectile pr, PEWorldObject wo);
 
 
 	public void processCollision(PEWorldObject wo1, PEWorldObject wo2){
 		// Here is where we redirect to collisions in easy, medium, hard based on types of objects
 		if (wo1 instanceof Projectile){
-
-			if (wo2 instanceof Enemy){
+			// if (wo2 instanceof Enemy){
 				// damage enemy
-				processCollision((Projectile)wo1, (Enemy)wo2);
-			}
+				processCollision((Projectile)wo1, wo2);
+			// }
 
 		} else if (wo1 instanceof Enemy){
 

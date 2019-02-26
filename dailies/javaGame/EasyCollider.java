@@ -6,8 +6,10 @@ public class EasyCollider extends Collider {
 	public EasyCollider(PEEngine engine){
 		super(engine);
 	}
-	public void processCollision(Projectile pr, Enemy e){
-		System.out.println("Enemy destroyed by projectile");
-		engine.remove(pr);
+	public void processCollision(Projectile pr, PEWorldObject wo){
+		if (wo instanceof Enemy){
+			System.out.println("Enemy destroyed by projectile");
+			engine.remove(wo);
+		}
 	}
 }
