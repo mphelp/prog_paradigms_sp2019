@@ -32,6 +32,9 @@ public class Projectile extends PESquare {
 		this.hasTarget = true;
 		System.out.println("Target set");
 	}
+	public void reset(){
+		this.hasTarget = false;
+	}
 	public void tick(){
 		double x_dist = targX - doubX;
 		double y_dist = targY - doubY;

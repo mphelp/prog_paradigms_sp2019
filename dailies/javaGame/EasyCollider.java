@@ -10,7 +10,7 @@ public class EasyCollider extends Collider {
 		if (wo instanceof Enemy){
 			System.out.println("Enemy destroyed by projectile");
 			engine.remove(wo);
-			engine.remove(pr);
+			pr.reset();
 		}
 	}
 }
