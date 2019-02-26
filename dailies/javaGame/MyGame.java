@@ -10,29 +10,30 @@ public class MyGame extends PEGame {
 		engine = new PEEngine(this, 100);
 
 		// TODO: Add player
+		player = new Player(200, 200, 20);
 
 		// TODO: Add target
 
 		// TODO: Add enemies
-		Enemy enemy1 = new Enemy(50,30,20,
+		enemy1 = new Enemy(50,30,20,
 				10,300,-1,1,1);
-		Enemy enemy2 = new Enemy(80,30,30,
+		enemy2 = new Enemy(80,30,30,
 				10,300, 1,1,1);
 		// 
 
 		// TODO: Player
-		circle = new PECircle();
-		circle.setRadius(25);
-		circle.setCenter(100,100);
+		// circle = new PECircle();
+		// circle.setRadius(25);
+		// circle.setCenter(100,100);
 		// square = new PESquare();
 		// square.setCenter(150,150);
 		// square.setSize(40);
 
 		// Adding to engine
-		engine.add(circle);
+		// engine.add(circle);
 		// engine.add(square);
 
-		
+		engine.add(player);	
 		engine.add(enemy1);
 		engine.add(enemy2);
 
@@ -48,8 +49,10 @@ public class MyGame extends PEGame {
 		}
 	}
 	public void keyPressed(int keycode){
-		int x = circle.getX();
-		int y = circle.getY();
+		// int x = circle.getX();
+		// int y = circle.getY();
+		int x = player.getX();
+		int y = player.getY();
 		switch (keycode){
 			case PEKeyEvent.VK_DOWN:
 				y += 5;
@@ -64,13 +67,13 @@ public class MyGame extends PEGame {
 				y -= 5;
 				break;
 		}
-		circle.setCenter(x,y);
+		player.setCenter(x,y);
 	}
 
 	private Enemy enemy1;
 	private Enemy enemy2;
 	protected PEEngine engine;
-	private PECircle circle;
+	private Player player;
 	protected EasyCollider collider;
 	// private PESquare square;	
 }

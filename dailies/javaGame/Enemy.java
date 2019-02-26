@@ -20,7 +20,6 @@ public class Enemy extends PESquare {
 		this.minX = minX;
 		this.directionRight 	= directionRight;
 		this.hitPoints 	= hitPoints;
-		this.difficulty = difficulty;
 		this.stride 		= stride;
 		//testing
 		System.out.println("Enemy created and directionRight is "+directionRight);
