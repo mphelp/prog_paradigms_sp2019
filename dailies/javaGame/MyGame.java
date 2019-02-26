@@ -13,7 +13,8 @@ public class MyGame extends PEGame {
 		player = new Player(200, 200, 20);
 
 		// TODO: Add target
-		// target = new Target();
+		target = new Target(player);
+
 		// TODO: Add enemies
 		enemy1 = new Enemy(50,30,20,
 				10,300,-1,1,2);
@@ -24,15 +25,14 @@ public class MyGame extends PEGame {
 		// Adding to engine
 
 		engine.add(player);	
+		engine.add(target);
 		engine.add(enemy1);
 		engine.add(enemy2);
 
 		// Collider
 		collider = new EasyCollider(engine);
 	}
-	public void tick(){
-		// Remove projectile after reaching target
-	}
+	public void tick(){}
 	public void collisionDetected(List<PEWorldObject> worldObjects){
 		int i = 0;
 		for (PEWorldObject wo: worldObjects){
@@ -41,26 +41,38 @@ public class MyGame extends PEGame {
 		}
 	}
 	public void keyPressed(int keycode){
-		// int x = circle.getX();
-		// int y = circle.getY();
-		int x = player.getX();
-		int y = player.getY();
+		int px = player.getX();
+		int py = player.getY();
+		int tx = target.getX();
+		int ty = target.getY();
 		switch (keycode){
 			case PEKeyEvent.VK_DOWN:
-				y += 5;
+				py += 5;
 				break;
 			case PEKeyEvent.VK_LEFT:
-				x -= 5;
+				px -= 5;
 				break;
 			case PEKeyEvent.VK_RIGHT:
-				x += 5;
+				px += 5;
 				break;
 			case PEKeyEvent.VK_UP:
-				y -= 5;
+				py -= 5;
+				break;
+			case PEKeyEvent.VK_A:
+				tx -= 5;
+				break;
+			case PEKeyEvent.VK_W:
+				ty -= 5;
+				break;
+			case PEKeyEvent.VK_D:
+				tx += 5;
+				break;
+			case PEKeyEvent.VK_S:
+				ty += 5;
 				break;
 				// add event for spacebar
 		}
-		player.setCenter(x,y);
+		player.setCenter(px,py);
 	}
 
 	private Enemy enemy1;

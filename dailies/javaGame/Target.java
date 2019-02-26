@@ -5,8 +5,8 @@ import edu.nd.cse.paradigms.*;
 
 public class Target extends PESquare {
 
-	Target(int x, int y){
-		setCenter(x, y);
+	Target(Player p){
+		setCenter(p.getX(), p.getY());
 		setColor(new Color(200, 0, 0)); // red target
 		//testing
 		System.out.println("Target created");
