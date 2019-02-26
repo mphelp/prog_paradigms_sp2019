@@ -2,7 +2,7 @@
 // Date: Feb 21 2019
 import edu.nd.cse.paradigms.*;
 
-public class EasyCollider extends Collider{
+public class EasyCollider extends Collider {
 	public EasyCollider(PEEngine engine){
 		super(engine);
 	}
