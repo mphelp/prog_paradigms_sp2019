@@ -30,13 +30,14 @@ public class Projectile extends PESquare {
 		this.targX = t.getX();
 		this.targY = t.getY();
 		this.hasTarget = true;
+		System.out.println("Target set");
 	}
 	public void tick(){
 		double x_dist = targX - doubX;
 		double y_dist = targY - doubY;
 		// relocate standing still if no target or HIT target
-		if (!hasTarget || (x_dist < 2 && y_dist < 2)){
-			setCenter(350,350);
+		if (!hasTarget || (Math.abs(x_dist) < 2 && Math.abs(y_dist) < 2)){
+			setCenter(-10,-10);
 			this.hasTarget = false;
 			this.doubX = x;
 			this.doubY = y;
@@ -46,8 +47,8 @@ public class Projectile extends PESquare {
 		}
 		// else move to target
 		double hyp = Math.hypot(x_dist, y_dist);
-		this.doubX = x + x_dist/hyp;
-		this.doubY = y + y_dist/hyp;
+		this.doubX = x + 2*x_dist/hyp;
+		this.doubY = y + 2*y_dist/hyp;
 		setCenter((int)Math.round(doubX), (int)Math.round(doubY));
 
  	}

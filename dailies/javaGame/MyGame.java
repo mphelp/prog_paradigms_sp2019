@@ -38,10 +38,11 @@ public class MyGame extends PEGame {
 	public void collisionDetected(List<PEWorldObject> worldObjects){
 		int i = 0;
 		for (PEWorldObject wo: worldObjects){
-			collider.processCollision(wo, worldObjects.get(i));
+			collider.processCollision(wo, worldObjects.get(i^1));
 			i++;
 		}
-		System.out.println("number of world objects: "+i);
+		// System.out.printf("%s colliding with %s\n", worldObjects.get(0).getClass().getName(),
+		// 			worldObjects.get(1).getClass().getName());
 	}
 	public void keyPressed(int keycode){
 		int px = player.getX();
