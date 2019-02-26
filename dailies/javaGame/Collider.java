@@ -8,7 +8,7 @@ public abstract class Collider{
 		this.engine = engine;
 	}
 	// 
-	public abstract void processCollision(Player p, PEWorldObject wo);
+	public abstract void processCollision(Player pl, PEWorldObject wo);
 	// public abstract void processCollision(Enemy e, PEWorldObject wo);
 
 

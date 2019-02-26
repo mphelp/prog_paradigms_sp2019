@@ -13,25 +13,15 @@ public class MyGame extends PEGame {
 		player = new Player(200, 200, 20);
 
 		// TODO: Add target
-
+		// target = new Target();
 		// TODO: Add enemies
 		enemy1 = new Enemy(50,30,20,
-				10,300,-1,1,1);
+				10,300,-1,1,2);
 		enemy2 = new Enemy(80,30,30,
 				10,300, 1,1,1);
 		// 
 
-		// TODO: Player
-		// circle = new PECircle();
-		// circle.setRadius(25);
-		// circle.setCenter(100,100);
-		// square = new PESquare();
-		// square.setCenter(150,150);
-		// square.setSize(40);
-
 		// Adding to engine
-		// engine.add(circle);
-		// engine.add(square);
 
 		engine.add(player);	
 		engine.add(enemy1);
@@ -40,7 +30,9 @@ public class MyGame extends PEGame {
 		// Collider
 		collider = new EasyCollider(engine);
 	}
-	public void tick(){}
+	public void tick(){
+		// Remove projectile after reaching target
+	}
 	public void collisionDetected(List<PEWorldObject> worldObjects){
 		int i = 0;
 		for (PEWorldObject wo: worldObjects){
@@ -66,6 +58,7 @@ public class MyGame extends PEGame {
 			case PEKeyEvent.VK_UP:
 				y -= 5;
 				break;
+				// add event for spacebar
 		}
 		player.setCenter(x,y);
 	}
