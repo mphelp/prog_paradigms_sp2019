@@ -6,7 +6,7 @@ public class Enemy extends PESquare {
 	private int maxX;
 	private int minX;
 	private int directionRight;
-	private int hitPoints;
+	private int hitPoints; // 0 default
 	private int stride;
 
 	Enemy(int x, int y, int size, int minX, int maxX, int directionRight,
@@ -23,6 +23,12 @@ public class Enemy extends PESquare {
 		this.stride 		= stride;
 		//testing
 		System.out.println("Enemy created and directionRight is "+directionRight);
+	}
+	public void getsHit(){
+		this.hitPoints = this.hitPoints + 1;
+	}
+	public int getHP(){
+		return this.hitPoints;
 	}
 	public void tick(){
 		int x = getX();

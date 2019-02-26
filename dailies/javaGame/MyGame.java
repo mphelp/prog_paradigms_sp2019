@@ -20,9 +20,9 @@ public class MyGame extends PEGame {
 
 		// TODO: Add enemies
 		enemy1 = new Enemy(50,30,20,
-				10,300,-1,1,2);
+				10,300,-1,0,2);
 		enemy2 = new Enemy(80,30,30,
-				10,300, 1,1,1);
+				10,300, 1,0,1);
 
 		// Adding to engine
 		engine.add(projectile);
@@ -32,7 +32,7 @@ public class MyGame extends PEGame {
 		engine.add(enemy2);
 
 		// Collider
-		collider = new EasyCollider(engine);
+		collider = new MediumCollider(engine);
 	}
 	public void tick(){}
 	public void collisionDetected(List<PEWorldObject> worldObjects){
@@ -91,6 +91,6 @@ public class MyGame extends PEGame {
 	private Target target;
 	private Projectile projectile;
 
-	protected EasyCollider collider;
+	protected MediumCollider collider;
 	protected PEEngine engine;
 }
