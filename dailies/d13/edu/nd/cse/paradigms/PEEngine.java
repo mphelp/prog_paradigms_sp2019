@@ -16,5 +16,8 @@ public class PEEngine extends Frame {
 	public PEEngine(PEGame game){
 		this.game = game;
 	}
-	public void paint(Graphics g){}
+	public void paint(Graphics g){
+		g.drawImage(screen.render(), 0, titlebarHeight, 
+				width, height, Color.BLACK, null);
+	}
 }

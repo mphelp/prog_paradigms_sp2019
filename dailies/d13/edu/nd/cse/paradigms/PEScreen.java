@@ -2,6 +2,8 @@
 // Date: Feb 27 2019
 package edu.nd.cse.paradigms;
 
+import java.util.stream.*;
+import java.util.Arrays;
 import java.awt.image.BufferedImage;
 
 public class PEScreen {
@@ -32,7 +34,10 @@ public class PEScreen {
 		return (py < height && py >= 0 && px < width && px >= 0);
 	}
 	public BufferedImage render(){
-		image.setRGB(0,0,width,height,pixels,1);
+		int[] flatPixels = Arrays.stream(pixels)
+			.flatMapToInt(Arrays::stream)
+			.toArray();
+		image.setRGB(0,0,width,height,flatPixels,0,1);
 		return image;
 	}
 }
