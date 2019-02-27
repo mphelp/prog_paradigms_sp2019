@@ -15,7 +15,7 @@ public class PEScreen {
 	public PEScreen(int width, int height){
 		this.width = width;
 		this.height = height;
-
+		this.pixels = new int[width][height];
 		this.bg = 0x22BB11;
 
 		this.clear();
