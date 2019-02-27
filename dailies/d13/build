@@ -1,2 +1,2 @@
-./build1
-./build2
+javac edu/nd/cse/paradigms/*.java
+javac EngineTest.java
