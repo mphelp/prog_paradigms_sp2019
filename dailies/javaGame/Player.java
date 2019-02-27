@@ -9,8 +9,5 @@ public class Player extends PECircle {
 		this.radius = radius;
 		setRadius(radius);
 		//testing
-		System.out.println("Player created");
 	}
-	// public void tick(){
- 	// }
 }

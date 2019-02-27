@@ -9,6 +9,7 @@ public class Projectile extends PESquare {
 	private int targY;
 	private double  doubX;
 	private double  doubY;
+	private double 	hypotenuse;
 	private boolean hasTarget;
 
 	Projectile(){
@@ -18,8 +19,7 @@ public class Projectile extends PESquare {
 		this.doubX = x;
 		this.doubY = y;
 		this.hasTarget = false;
-		//testing
-		System.out.println("Projectile created");
+		this.hypotenuse = 1;
 	}
 	public void sendToTarget(Player pl, Target t){
 		// current
@@ -29,8 +29,11 @@ public class Projectile extends PESquare {
 		// target
 		this.targX = t.getX();
 		this.targY = t.getY();
+		double x_dist = targX - doubX;
+		double y_dist = targY - doubY;
+
+		this.hypotenuse = Math.hypot(x_dist, y_dist);
 		this.hasTarget = true;
-		System.out.println("Target set");
 	}
 	public void reset(){
 		this.hasTarget = false;
@@ -44,15 +47,23 @@ public class Projectile extends PESquare {
 			this.hasTarget = false;
 			this.doubX = x;
 			this.doubY = y;
-			// TODO: Set color
-			// setColor(Color.)
 			return;
 		}
 		// else move to target
-		double hyp = Math.hypot(x_dist, y_dist);
-		this.doubX = x + 2*x_dist/hyp;
-		this.doubY = y + 2*y_dist/hyp;
-		setCenter((int)Math.round(doubX), (int)Math.round(doubY));
-
+		// double hyp = Math.hypot(x_dist, y_dist);
+		int pixel_x, pixel_y;
+		this.doubX = x + 8*x_dist/hypotenuse; // speed: 6
+		this.doubY = y + 8*y_dist/hypotenuse;
+		if (x_dist > 0){
+			pixel_x = (int)Math.ceil(doubX);
+		} else {
+			pixel_x = (int)Math.floor(doubX);
+		}
+		if (y_dist > 0){
+			pixel_y = (int)Math.ceil(doubY);
+		} else {
+			pixel_y = (int)Math.floor(doubY);
+		}
+		setCenter(pixel_x, pixel_y);
  	}
 }

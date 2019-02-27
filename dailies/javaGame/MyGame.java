@@ -6,25 +6,28 @@ import java.util.ArrayList;
 
 public class MyGame extends PEGame {
 	public void start(){
-		// Definitions
+		
+		// Add engine
 		engine = new PEEngine(this, 100);
 
-		// TODO: Add player
+		// Add player: x position, y position, size
 		player = new Player(200, 200, 20);
 
-		// TODO: Add target
+		// Add target
 		target = new Target(player);
 
-		// TODO: Add Projectile
+		// Add projectile
 		projectile = new Projectile();
 
-		// TODO: Add enemies
+		// Add enemies: x position, y position, size
+		//        min x position, max x position, directionRightScalar, 
+		// 				hit points, speed
 		enemy1 = new Enemy(50,30,20,
 				10,300,-1,0,2);
 		enemy2 = new Enemy(80,30,30,
 				10,300, 1,0,1);
 
-		// Adding to engine
+		// Add ALL to engine
 		engine.add(projectile);
 		engine.add(player);	
 		engine.add(target);
@@ -32,7 +35,7 @@ public class MyGame extends PEGame {
 		engine.add(enemy2);
 
 		// Collider
-		collider = new MediumCollider(engine);
+		collider = new HardCollider(engine);
 	}
 	public void tick(){}
 	public void collisionDetected(List<PEWorldObject> worldObjects){
@@ -41,8 +44,6 @@ public class MyGame extends PEGame {
 			collider.processCollision(wo, worldObjects.get(i^1));
 			i++;
 		}
-		// System.out.printf("%s colliding with %s\n", worldObjects.get(0).getClass().getName(),
-		// 			worldObjects.get(1).getClass().getName());
 	}
 	public void keyPressed(int keycode){
 		int px = player.getX();
@@ -50,31 +51,31 @@ public class MyGame extends PEGame {
 		int tx = target.getX();
 		int ty = target.getY();
 		switch (keycode){
-			// move player
+			// move target
 			case PEKeyEvent.VK_DOWN:
-				py += 5;
+				ty += 5;
 				break;
 			case PEKeyEvent.VK_LEFT:
-				px -= 5;
-				break;
-			case PEKeyEvent.VK_RIGHT:
-				px += 5;
-				break;
-			case PEKeyEvent.VK_UP:
-				py -= 5;
-				break;
-			// move target
-			case PEKeyEvent.VK_A:
 				tx -= 5;
 				break;
-			case PEKeyEvent.VK_W:
-				ty -= 5;
-				break;
-			case PEKeyEvent.VK_D:
+			case PEKeyEvent.VK_RIGHT:
 				tx += 5;
 				break;
+			case PEKeyEvent.VK_UP:
+				ty -= 5;
+				break;
+			// move player
+			case PEKeyEvent.VK_A:
+				px -= 5;
+				break;
+			case PEKeyEvent.VK_W:
+				py -= 5;
+				break;
+			case PEKeyEvent.VK_D:
+				px += 5;
+				break;
 			case PEKeyEvent.VK_S:
-				ty += 5;
+				py += 5;
 				break;
 			// shoot projectile
 			case PEKeyEvent.VK_SPACE:
@@ -91,6 +92,6 @@ public class MyGame extends PEGame {
 	private Target target;
 	private Projectile projectile;
 
-	protected MediumCollider collider;
+	protected HardCollider collider;
 	protected PEEngine engine;
 }
