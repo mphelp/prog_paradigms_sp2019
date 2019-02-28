@@ -18,6 +18,8 @@ public class PEScreen {
 		this.pixels = new int[width][height];
 		this.bg = 0x22BB11;
 
+		this.image = new BufferedImage(width, height,
+				BufferedImage.TYPE_INT_RGB);
 		this.clear();
 	}
 	public void setPixel(int px, int py, int color){
