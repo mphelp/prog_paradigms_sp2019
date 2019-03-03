@@ -23,4 +23,14 @@ public class PESquare {
 	public setColor(int color){
 		this.color = color;
 	}
+
+	public void tick(){}
+	public void render(PEScreen screen){
+		for (int i = x - (int)size/2; i < x + (int)size/2; i++){
+			for (int j = y - (int)size/2; j < y + (int)size/2; j++){
+				if screen.inBounds(i, j)
+					screen.setPixel(i, j, this.color);
+			}	 
+		}
+	}
 }
