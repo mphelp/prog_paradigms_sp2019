@@ -2,6 +2,7 @@
 // Date: Feb 27 2019
 package edu.nd.cse.paradigms;
 
-public class PEGame {
-	public PEGame(){}
+public abstract class PEGame {
+	public abstract void start();
+	public abstract void tick();
 }

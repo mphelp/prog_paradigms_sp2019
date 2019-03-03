@@ -2,8 +2,6 @@
 // Date: Feb 27 2019
 package edu.nd.cse.paradigms;
 
-// import java.util.stream.*;
-// import java.util.Arrays;
 import java.awt.image.BufferedImage;
 
 public class PEScreen {
@@ -23,7 +21,9 @@ public class PEScreen {
 		this.clear();
 	}
 	public void setPixel(int px, int py, int color){
-		pixels[px][py] = color;
+		if (inBounds(px, py)){
+			pixels[px][py] = color;
+		}
 	}
 	public void clear(){
 		for (int i = 0; i < width; i++){
@@ -35,16 +35,15 @@ public class PEScreen {
 	public boolean inBounds(int px, int py){
 		return (py < height && py >= 0 && px < width && px >= 0);
 	}
+	public void renderWorldObject(PEWorldObject wo){
+		wo.render(this);
+	}
 	public BufferedImage render(){
-		// int[] flatPixels = Arrays.stream(pixels)
-		// 	.flatMapToInt(Arrays::stream)
-		// 	.toArray();
 		for (int i = 0; i < width; i++){
 			for (int j = 0; j < height; j++){
 				image.setRGB(i, j, pixels[i][j]);
 			}
 		}
-		// image.setRGB(0,0,width,height,flatPixels,0,1);
 		return image;
 	}
 }
