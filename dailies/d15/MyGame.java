@@ -1,21 +1,29 @@
 // Name: Matthew Phelps
-// Date: Feb 27 2019
-
+// Date: Feb 17 2019
 import edu.nd.cse.paradigms.*;
+import java.util.List;
+import java.util.ArrayList;
 
-class MyGame extends PEGame {
-	private PEEngine engine;
-	private CoolSquare cs;
-
+public class MyGame extends PEGame {
 	public void start(){
 		engine = new PEEngine(this);
-
-		cs = new CoolSquare();
-		cs.setCenter(100, 100);
-		cs.setSize(200);
-
-		engine.add(cs);
+		circle = new PECircle();
+		circle.setRadius(25);
+		circle.setCenter(25,25);
+		engine.add(circle);
 	}
 	public void tick(){}
+	public void collisionDetected(List<PEWorldObject> worldObjects){}
+	public void keyPressed(int keycode){
+		int x = circle.getX();
+		int y = circle.getY();
+		switch (keycode){
+			case PEKeyEvent.VK_DOWN:
+				y += 5;
+				break;
+		}
+		circle.setCenter(x,y);
+	}
+	protected PEEngine engine;
+	protected PECircle circle;
 }
-
