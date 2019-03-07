@@ -8,7 +8,7 @@ public class MyGame extends PEGame {
 	public void start(){
 		
 		// Add engine
-		engine = new PEEngine(this, 100);
+		engine = new PEEngine(this);
 
 		// Add player: x position, y position, size
 		player = new Player(200, 200, 20);

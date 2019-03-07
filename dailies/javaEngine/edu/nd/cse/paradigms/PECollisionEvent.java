@@ -3,13 +3,14 @@
 
 package edu.nd.cse.paradigms;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PECollisionEvent extends PEEvent {
 	protected List<PEWorldObject> pairObjects;
 
 	public PECollisionEvent(PEWorldObject wo1, PEWorldObject wo2){
-		this.pairObjects = new List<PEWorldObject>();
+		this.pairObjects = new ArrayList<PEWorldObject>();
 		pairObjects.add(wo1);
 		pairObjects.add(wo2);
 	}

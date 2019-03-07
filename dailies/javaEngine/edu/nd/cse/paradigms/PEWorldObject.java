@@ -24,4 +24,12 @@ public abstract class PEWorldObject {
 	public int getColor(){ return color; }
 	public abstract void tick();
 	public abstract void render(PEScreen screen);
+	public abstract boolean inObjectBoundary(int px, int py);
+
+	public int getRadius(){
+		return 1;
+	}
+	public int getSize(){
+		return 1;
+	} 
 }

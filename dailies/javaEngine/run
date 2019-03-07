@@ -1,2 +1,2 @@
-java -cp .:paradigms_v1_2_rel.jar PGame
+java PGame
 

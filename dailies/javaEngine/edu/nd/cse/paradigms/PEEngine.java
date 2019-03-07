@@ -81,7 +81,7 @@ public class PEEngine extends Frame implements KeyListener {
 		this.game.keyPressed(evt.getKeyCode());
 	}
 	private void processEvent(PECollisionEvent evt){
-		this.game.collisionDetected(evt.getWorldObjects.get(0), evt.getWorldObjects.get(1));
+		this.game.collisionDetected(evt.getWorldObjects());
 	}
 	private void eventLoopIterate(){
 		// key events
@@ -112,8 +112,8 @@ public class PEEngine extends Frame implements KeyListener {
 				}
 			}
 		} else if (wo2 instanceof PESquare){
-			for (int i = wo2.getX() - (int)Math.floor(size/2); i < wo2.getX() + (int)Math.ceil(size/2); i++){
-				for (int j = y - (int)Math.floor(size/2); j < y + (int)Math.ceil(size/2); j++){
+			for (int i = wo2.getX() - (int)Math.floor(wo2.getSize()/2); i < wo2.getX() + (int)Math.ceil(wo2.getSize()/2); i++){
+				for (int j = wo2.getY() - (int)Math.floor(wo2.getSize()/2); j < wo2.getY() + (int)Math.ceil(wo2.getSize()/2); j++){
 					if (wo1.inObjectBoundary(i, j)){
 						return true;
 					} 
