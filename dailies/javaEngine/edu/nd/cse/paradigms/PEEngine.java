@@ -21,11 +21,13 @@ public class PEEngine extends Frame implements KeyListener {
 	protected LinkedList<PEKeyEvent> queue;
 
 	public PEEngine(PEGame game){
+		// game
 		this.game = game;
+		// screen
 		this.screen = new PEScreen(width, height);
 		setVisible(true);
+		// clock
 		this.clock = new PECentralClock(this);
-
 		// array list of objects
 		this.objects = new ArrayList<PEWorldObject>();
 		// event queue
@@ -78,4 +80,28 @@ public class PEEngine extends Frame implements KeyListener {
 	}
 	public void keyReleased(KeyEvent evt){}
 	public void keyTyped(KeyEvent evt){}
+
+	// new for java engine milestone:
+	public boolean detectCollision(PEWorldObject wo1, PEWorldObject wo2){
+		boolean result = false;
+		if (wo2 instanceof PECircle){
+			for (int i = wo2.getX() - wo2.getRadius(); i < wo2.getX() + wo2.getRadius(); i++){
+				for (int j = wo2.getY() - wo2.getRadius(); j < wo2.getY() + wo2.getRadius(); j++){
+					if (Math.hypot(i - wo2.getX(), j - wo2.getY()) <= wo2.getRadius() && wo1.inObjectBoundary(i, j)){
+						return true;
+					}
+				}
+			}
+		} else if (wo2 instanceof PESquare){
+			for (int i = wo2.getX() - (int)Math.floor(size/2); i < wo2.getX() + (int)Math.ceil(size/2); i++){
+				for (int j = y - (int)Math.floor(size/2); j < y + (int)Math.ceil(size/2); j++){
+					if (wo1.inObjectBoundary(i, j)){
+						return true;
+					} 
+				}	 
+			}
+		}
+		// else
+		return false;
+	}
 }

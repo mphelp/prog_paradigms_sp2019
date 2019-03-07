@@ -12,6 +12,9 @@ public class PESquare extends PEWorldObject {
 	public void setSize(int size){
 		this.size = size;
 	}
+	public int getSize(){
+		return size;
+	}
 
 	public void tick(){}
 	public void render(PEScreen screen){

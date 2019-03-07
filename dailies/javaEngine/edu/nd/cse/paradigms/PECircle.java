@@ -12,18 +12,21 @@ public class PECircle extends PEWorldObject {
 	public void setRadius(int radius){
 		this.radius = radius;
 	}
+	public int getRadius(){
+		return radius;
+	}
 
 	public void tick(){}
 	public void render(PEScreen screen){
 		for (int i = x - radius; i < x + radius; i++){
 			for (int j = y - radius; j < y + radius; j++){
-				if (Math.hypot(i-x, j-y) <= 1.00){
+				if (Math.hypot(i-x, j-y) <= (float)radius){
 					screen.setPixel(i, j, this.color);
 				}
 			}	 
 		}
 	}
 	public boolean inObjectBoundary(int qx, int qy){
-		return (Math.hypot(qx - x, qy - y) <= (float)radius);
+		return (Math.hypot(qx-x, qy-y) <= (float)radius);
 	}
 }
