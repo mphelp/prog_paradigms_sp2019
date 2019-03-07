@@ -8,6 +8,7 @@ import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.event.*;
+import java.util.LinkedList;
 
 public class PEEngine extends Frame implements KeyListener {
 	protected PEGame game; 
@@ -17,6 +18,7 @@ public class PEEngine extends Frame implements KeyListener {
 	protected int height = 480;
 	protected int titlebarHeight = 0;
 	protected ArrayList<PEWorldObject> objects;
+	protected LinkedList<PEKeyEvent> queue;
 
 	public PEEngine(PEGame game){
 		this.game = game;
@@ -26,10 +28,15 @@ public class PEEngine extends Frame implements KeyListener {
 
 		// array list of objects
 		this.objects = new ArrayList<PEWorldObject>();
+		// event queue
+		this.queue = new LinkedList<PEKeyEvent>();
 		// register self as Key listener
 		addKeyListener(this);
 	}
 	public void tick(){
+		// eventloopiterate all the key events
+		eventLoopIterate();
+
 		// call all objects' ticks
 		for (PEWorldObject wo: objects){
 			wo.tick();
@@ -57,8 +64,14 @@ public class PEEngine extends Frame implements KeyListener {
 	}
 
 	// New for d15:
-	private void processEvent(PEKeyEvent evt){}
-	private void eventLoopIterate(){}
+	private void processEvent(PEKeyEvent evt){
+		this.game.keyPressed(evt.getKeyCode());
+	}
+	private void eventLoopIterate(){
+		while(!queue.isEmpty()){
+			processEvent(queue.remove());
+		}
+	}
 	public void keyPressed(KeyEvent evt){
 		PEKeyEvent peke = new PEKeyEvent(evt);
 		processEvent(peke);

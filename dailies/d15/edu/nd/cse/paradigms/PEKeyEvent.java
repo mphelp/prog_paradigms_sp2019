@@ -7,7 +7,21 @@ import java.awt.event.KeyEvent;
 import java.lang.Object;
 
 public class PEKeyEvent {
-	PEKeyEvent(){}
-	PEKeyEvent(KeyEvent awtKeyEvent){}
-	public int getKeyCode(){}
+	PEKeyEvent(KeyEvent awtKeyEvent){
+		this.VK_DOWN = awtKeyEvent.VK_DOWN;
+		this.VK_UP = awtKeyEvent.VK_UP;
+		this.VK_RIGHT = awtKeyEvent.VK_RIGHT;
+		this.VK_LEFT = awtKeyEvent.VK_LEFT;
+		
+		this.awtKeyEvent = awtKeyEvent;
+	}
+	public int getKeyCode(){
+		return awtKeyEvent.getKeyCode();
+	}
+
+	private int VK_DOWN;
+	private int VK_UP;
+	private int VK_RIGHT;
+	private int VK_LEFT;
+	private KeyEvent awtKeyEvent;
 }
