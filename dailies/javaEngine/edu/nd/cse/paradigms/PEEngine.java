@@ -18,8 +18,9 @@ public class PEEngine extends Frame implements KeyListener {
 	protected int height = 480;
 	protected int titlebarHeight = 0;
 	protected ArrayList<PEWorldObject> objects;
-	protected LinkedList<PEKeyEvent> keyQueue;
-	protected LinkedList<PECollisionEvent> collisionQueue;
+	// protected LinkedList<PEKeyEvent> keyQueue;
+	// protected LinkedList<PECollisionEvent> collisionQueue;
+	protected LinkedList<PEEvent> events;
 
 	public PEEngine(PEGame game){
 		// game
@@ -31,10 +32,8 @@ public class PEEngine extends Frame implements KeyListener {
 		this.clock = new PECentralClock(this);
 		// array list of objects
 		this.objects = new ArrayList<PEWorldObject>();
-		// event queue
-		this.keyQueue = new LinkedList<PEKeyEvent>();
-		// collision queue
-		this.collisionQueue = new LinkedList<PECollisionEvent>();
+		// events
+		this.events = new LinkedList<PEEvent>();
 		// register self as Key listener
 		addKeyListener(this);
 	}
@@ -46,7 +45,7 @@ public class PEEngine extends Frame implements KeyListener {
 			for (int j = i + 1; j < objects.size(); j++) {
 				if (detectCollision(objects.get(i),objects.get(j))){
 					PECollisionEvent collision = new PECollisionEvent(objects.get(i),objects.get(j));
-					collisionQueue.add(collision);
+					events.add(collision);
 				}
 			}
 		}
@@ -85,17 +84,18 @@ public class PEEngine extends Frame implements KeyListener {
 	}
 	private void eventLoopIterate(){
 		// key events
-		while(!keyQueue.isEmpty()){
-			processEvent(keyQueue.remove());
-		}
-		// collision events
-		while (!collisionQueue.isEmpty()){
-			processEvent(collisionQueue.remove());
+		while(!events.isEmpty()){
+			PEEvent evt = events.remove();
+			if (evt instanceof PEKeyEvent){
+				processEvent((PEKeyEvent) evt);
+			} else if (evt instanceof PECollisionEvent){
+				processEvent((PECollisionEvent) evt);
+			}
 		}
 	}
 	public void keyPressed(KeyEvent evt){
 		PEKeyEvent peke = new PEKeyEvent(evt);
-		processEvent(peke);
+		events.add(peke);
 	}
 	public void keyReleased(KeyEvent evt){}
 	public void keyTyped(KeyEvent evt){}

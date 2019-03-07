@@ -5,32 +5,22 @@ package edu.nd.cse.paradigms;
 
 import java.awt.event.KeyEvent;
 
-public class PEKeyEvent {
+public class PEKeyEvent extends PEEvent {
 	PEKeyEvent(KeyEvent awtKeyEvent){
-		this.VK_DOWN = awtKeyEvent.VK_DOWN;
-		this.VK_UP = awtKeyEvent.VK_UP;
-		this.VK_RIGHT = awtKeyEvent.VK_RIGHT;
-		this.VK_LEFT = awtKeyEvent.VK_LEFT;
-		this.VK_W = awtKeyEvent.VK_W;
-		this.VK_A = awtKeyEvent.VK_A;
-		this.VK_S = awtKeyEvent.VK_S;
-		this.VK_D = awtKeyEvent.VK_D;
-		this.VK_SPACE = awtKeyEvent.VK_SPACE;
-
 		this.awtKeyEvent = awtKeyEvent;
 	}
 	public int getKeyCode(){
 		return awtKeyEvent.getKeyCode();
 	}
 
-	private int VK_DOWN;
-	private int VK_UP;
-	private int VK_RIGHT;
-	private int VK_LEFT;
-	private int VK_W; 
-	private int VK_A; 
-	private int VK_S; 
-	private int VK_D; 
-	private int VK_SPACE;
+	public static final int VK_DOWN = KeyEvent.VK_DOWN;
+	public static final int VK_UP = KeyEvent.VK_UP;
+	public static final int VK_RIGHT = KeyEvent.VK_RIGHT;
+	public static final int VK_LEFT = KeyEvent.VK_LEFT;
+	public static final int VK_W = KeyEvent.VK_W;
+	public static final int VK_A = KeyEvent.VK_A;
+	public static final int VK_S = KeyEvent.VK_S;
+	public static final int VK_D = KeyEvent.VK_D;
+	public static final int VK_SPACE = KeyEvent.VK_SPACE;
 	private KeyEvent awtKeyEvent;
 }

@@ -1,2 +1,2 @@
-java PGame
+java -cp .:edu/nd/cse/paradigms/* PGame
 
