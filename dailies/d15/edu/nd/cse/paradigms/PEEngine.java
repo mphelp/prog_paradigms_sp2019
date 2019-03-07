@@ -7,8 +7,9 @@ import java.util.List;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Color;
+import java.awt.event.*;
 
-public class PEEngine extends Frame {
+public class PEEngine extends Frame implements KeyListener {
 	protected PEGame game; 
 	protected PEScreen screen;
 	private PECentralClock clock;
@@ -25,6 +26,8 @@ public class PEEngine extends Frame {
 
 		// array list of objects
 		this.objects = new ArrayList<PEWorldObject>();
+		// register self as Key listener
+		addKeyListener(this);
 	}
 	public void tick(){
 		// call all objects' ticks
@@ -52,4 +55,14 @@ public class PEEngine extends Frame {
 	public void remove(PEWorldObject wo){
 		objects.remove(wo);
 	}
+
+	// New for d15:
+	private void processEvent(PEKeyEvent evt){}
+	private void eventLoopIterate(){}
+	public void keyPressed(KeyEvent evt){
+		PEKeyEvent peke = new PEKeyEvent(evt);
+		processEvent(peke);
+	}
+	public void keyReleased(KeyEvent evt){}
+	public void keyTyped(KeyEvent evt){}
 }

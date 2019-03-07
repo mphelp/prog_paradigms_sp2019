@@ -7,23 +7,27 @@ import java.util.ArrayList;
 public class MyGame extends PEGame {
 	public void start(){
 		engine = new PEEngine(this);
-		circle = new PECircle();
-		circle.setRadius(25);
-		circle.setCenter(25,25);
-		engine.add(circle);
+		// Eventually will be circle
+		square = new PESquare();
+		// circle.setRadius(25);
+		// circle.setCenter(25,25);
+		// engine.add(circle);
+		square.setSize(10);
+		engine.add(square);
 	}
 	public void tick(){}
 	public void collisionDetected(List<PEWorldObject> worldObjects){}
 	public void keyPressed(int keycode){
-		int x = circle.getX();
-		int y = circle.getY();
+		int x = square.getX();
+		int y = square.getY();
 		switch (keycode){
 			case PEKeyEvent.VK_DOWN:
 				y += 5;
 				break;
 		}
-		circle.setCenter(x,y);
+		square.setCenter(x,y);
 	}
 	protected PEEngine engine;
-	protected PECircle circle;
+	// protected PECircle circle;
+	protected PESquare square;
 }
