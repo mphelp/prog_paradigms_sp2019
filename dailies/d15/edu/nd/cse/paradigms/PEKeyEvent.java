@@ -6,7 +6,7 @@ package edu.nd.cse.paradigms;
 import java.awt.event.KeyEvent;
 import java.lang.Object;
 
-public class PEKeyEvent extends Object {
+public class PEKeyEvent {
 	PEKeyEvent(){}
 	PEKeyEvent(KeyEvent awtKeyEvent){}
 	public int getKeyCode(){}
