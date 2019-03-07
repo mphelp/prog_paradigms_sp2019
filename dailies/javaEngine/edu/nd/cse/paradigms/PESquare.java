@@ -21,4 +21,10 @@ public class PESquare extends PEWorldObject {
 			}	 
 		}
 	}
+	public boolean inObjectBoundary(int qx, int qy){
+		return ((qx >= x - (int)Math.floor(size/2)) &&
+						(qx <= x + (int)Math.ceil(size/2)) &&
+						(qy >= y - (int)Math.floor(size/2)) &&
+						(qy <= y + (int)Math.ceil(size/2)));
+	}
 }
