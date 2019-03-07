@@ -18,7 +18,8 @@ public class PEEngine extends Frame implements KeyListener {
 	protected int height = 480;
 	protected int titlebarHeight = 0;
 	protected ArrayList<PEWorldObject> objects;
-	protected LinkedList<PEKeyEvent> queue;
+	protected LinkedList<PEKeyEvent> keyQueue;
+	protected LinkedList<PECollisionEvent> collisionQueue;
 
 	public PEEngine(PEGame game){
 		// game
@@ -31,14 +32,24 @@ public class PEEngine extends Frame implements KeyListener {
 		// array list of objects
 		this.objects = new ArrayList<PEWorldObject>();
 		// event queue
-		this.queue = new LinkedList<PEKeyEvent>();
+		this.keyQueue = new LinkedList<PEKeyEvent>();
+		// collision queue
+		this.collisionQueue = new LinkedList<PECollisionEvent>();
 		// register self as Key listener
 		addKeyListener(this);
 	}
 	public void tick(){
 		// eventloopiterate all the key events
 		eventLoopIterate();
-
+		// collision detection
+		for (int i = 0; i < objects.size(); i++) {
+			for (int j = i + 1; j < objects.size(); j++) {
+				if (detectCollision(objects.get(i),objects.get(j))){
+					PECollisionEvent collision = new PECollisionEvent(objects.get(i),objects.get(j));
+					collisionQueue.add(collision);
+				}
+			}
+		}
 		// call all objects' ticks
 		for (PEWorldObject wo: objects){
 			wo.tick();
@@ -65,13 +76,21 @@ public class PEEngine extends Frame implements KeyListener {
 		objects.remove(wo);
 	}
 
-	// New for d15:
+	// Event Processing
 	private void processEvent(PEKeyEvent evt){
 		this.game.keyPressed(evt.getKeyCode());
 	}
+	private void processEvent(PECollisionEvent evt){
+		this.game.collisionDetected(evt.getWorldObjects.get(0), evt.getWorldObjects.get(1));
+	}
 	private void eventLoopIterate(){
-		while(!queue.isEmpty()){
-			processEvent(queue.remove());
+		// key events
+		while(!keyQueue.isEmpty()){
+			processEvent(keyQueue.remove());
+		}
+		// collision events
+		while (!collisionQueue.isEmpty()){
+			processEvent(collisionQueue.remove());
 		}
 	}
 	public void keyPressed(KeyEvent evt){

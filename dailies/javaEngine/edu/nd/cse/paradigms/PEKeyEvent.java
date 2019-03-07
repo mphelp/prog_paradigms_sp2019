@@ -4,7 +4,6 @@
 package edu.nd.cse.paradigms;
 
 import java.awt.event.KeyEvent;
-import java.lang.Object;
 
 public class PEKeyEvent {
 	PEKeyEvent(KeyEvent awtKeyEvent){
