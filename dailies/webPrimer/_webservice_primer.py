@@ -35,8 +35,8 @@ class _webservice_primer:
 		alt = {"title": title}
 		r = requests.post(self.MOVIES_URL + str(mid), data=json.loads(json.dumps(alt)))
 		print(r.status_code)
-	def reset_movie(self, mid):
-		if not mid or not title: 
+	def delete_movie(self, mid):
+		if not mid: 
 			raise ValueError('movie id and title must be specified')
 			return
 		r = requests.delete(self.MOVIES_URL + str(mid))
