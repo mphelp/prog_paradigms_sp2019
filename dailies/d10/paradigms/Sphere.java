@@ -11,15 +11,15 @@ public class Sphere {
 		return this.radius;
 	}
 	public double getVolume(){
-		return (4.0)*Math.PI*Math.pow(radius,3);
+		return (4.0/3.0)*Math.PI*Math.pow(radius,3);
 	}
 	public double getSurfaceArea(){
-		return (4.0)*Math.PI*Math.pow(radius,2);
+		return 4.0*Math.PI*Math.pow(radius,2);
 	}
 	public String toString(){
-		String s = String.format("Radius: %15.5f\n", radius);
-		s += String.format("Volume: %15.5f\n", getVolume());
-		s += String.format("Surface Area: %15.5f", getSurfaceArea());
+		String s = String.format("Radius: %15.1f\n", radius);
+		s += String.format("Volume: %29.13f\n", getVolume());
+		s += String.format("Surface Area: %23.13f\n", getSurfaceArea());
 		return s;
 	}
 }
