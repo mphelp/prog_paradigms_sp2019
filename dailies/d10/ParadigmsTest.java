@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+// Matthew Phelps
+// Date: Feb 15 2019
+>>>>>>> 10573ab193f7951b05d54412897cde609e7e8821
 import paradigms.*;
 public class ParadigmsTest {
 	public static void main(String args[]){
