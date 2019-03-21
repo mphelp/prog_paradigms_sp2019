@@ -5,8 +5,8 @@ class TestWebServicePrimer(unittest.TestCase):
 
 	#@classmethod
 	#def setUpClass(self):
-	MID = 32 # CHANGE TO YOUR MID
-	MNAME = 'Twelve Monkeys (1995)' # CHANGE TO YOUR MOVIE NAME
+	MID = 43 # CHANGE TO YOUR MID
+	MNAME = 'Restoration (1995)' # CHANGE TO YOUR MOVIE NAME
 	ws = _webservice_primer()
 
 	def reset_movie(self):
