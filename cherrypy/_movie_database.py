@@ -16,8 +16,8 @@ class _movie_database:
                 genres = attr[2].split('|')
                 # Set attr
                 temp = {
-                    title: title
-                    genres: genres
+                    'title': title,
+                    'genres': genres
                 }
                 self.movies[mid] = temp
         print(self.movies[1])
