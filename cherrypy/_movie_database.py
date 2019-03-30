@@ -127,5 +127,68 @@ class _movie_database:
         except KeyError:
             pass
 
+    # Ratings
+    def load_users(self, users_file):
+        # Format: uid::gender::age::occupationcode::zipcode
+        # Stored: uid  gender  age  occupationcode  zipcode
+        # Types:  int  str     int  int             str
+        with open(users_file) as f:
+            for line in f:
+                attr = line.strip().split('::')
+                uid = int(attr[0])
+                gender = attr[1]
+                age = int(attr[2])
+                occupationcode = int(attr[3])
+                zipcode = attr[4] # because of zips like XXXXX-XXXX
+                # Set attr
+                temp = {
+                    'gender': gender,
+                    'age': age,
+                    'occupationcode': occupationcode,
+                    'zipcode': zipcode
+                }
+                self.users[uid] = temp
+
+    # def print_user(self, uid):
+    #     try:
+    #         print(self.users[uid])
+    #     except KeyError:
+    #         print(None)
+
+    # def get_user(self, uid):
+    #     try:
+    #         return [self.users[uid]['gender'], \
+    #                 self.users[uid]['age'], \
+    #                 self.users[uid]['occupationcode'], \
+    #                 self.users[uid]['zipcode']]
+    #     except KeyError:
+    #         return None
+
+    # def get_users(self):
+    #     # list of mids
+    #     return list(self.users.keys())
+
+    # def set_user(self, uid, user):
+    #     if len(user) != 4 or not isinstance(user[0], basestring) \
+    #         or not isinstance(user[1], (int, long)) \
+    #         or not isinstance(user[2], (int, long)) \
+    #         or not isinstance(user[3], basestring):
+    #         raise Exception('database function {} requires '.format(sys._getframe().f_code.co_name) + \
+    #                         'user\'s gender(str), age(int), occupationcode(int) and zipcode(str)')
+    #         return
+
+    #     temp = {
+    #         'gender': user[0],
+    #         'age': user[1],
+    #         'occupationcode': user[2],
+    #         'zipcode': user[3]
+    #     }
+    #     self.users[uid] = temp
+
+    # def delete_user(self, uid):
+    #     try:
+    #         del self.users[uid]
+    #     except KeyError:
+    #         pass
 
 
