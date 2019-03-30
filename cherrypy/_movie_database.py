@@ -1,3 +1,5 @@
+import sys
+
 # Backend DB
 class _movie_database:
     def __init__(self):
@@ -43,7 +45,8 @@ class _movie_database:
 
     def set_movie(self, mid, movie):
         if len(movie) != 2:
-            raise Exception('set_movie requires movie title and genre')
+            raise Exception('{} requires movie title and genre'.format( \
+                sys.getframe().f_code.co_name))
             return
         # genres is stored as a list of str currently
         temp = {
@@ -85,5 +88,31 @@ class _movie_database:
             print(self.users[uid])
         except KeyError:
             print(None)
+
+    def get_user(self, uid):
+        try:
+            return [self.users[uid]['gender'], \
+                    self.users[uid]['age'], \
+                    self.users[uid]['occupationcode'], \
+                    self.users[uid]['zipcode']]
+        except KeyError:
+            return None
+
+    def get_users(self):
+        # list of mids
+        return list(self.users.keys())
+
+    def set_user(self, uid, user):
+        if len(user) != 4:
+            raise Exception('{} requires user gender, age, occupationcode and zipcode'.format( \
+                sys.getframe().f_code.co_name))
+            return
+        # genres is stored as a list of str currently
+        # temp = {
+        #     'title': movie[0],
+        #     'genres': movie[1]
+        # }
+        # self.movies[mid] = temp
+
 
 

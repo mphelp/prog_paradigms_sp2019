@@ -18,5 +18,4 @@ if __name__ == '__main__':
 
     ## Testing users:
     mdb.load_users(users_file)
-    mdb.print_user(0)
-    mdb.print_user(1)
+    mdb.set_user(1, [1])
