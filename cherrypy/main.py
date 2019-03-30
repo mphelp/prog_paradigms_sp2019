@@ -7,6 +7,7 @@ if __name__ == '__main__':
     # Testing OO backend
     movie_file = "./dat/movies.dat" 
     users_file = "./dat/users.dat"
+    ratings_file = "./dat/ratings.dat"
     mdb = _movie_database()
     ## Testing movies:
     # mdb.load_movies(movie_file)
@@ -25,3 +26,5 @@ if __name__ == '__main__':
     # mdb.print_user(9999)
 
     ## Testing ratings:
+    mdb.load_ratings(ratings_file)
+    print(mdb.ratings)

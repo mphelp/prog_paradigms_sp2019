@@ -128,26 +128,17 @@ class _movie_database:
             pass
 
     # Ratings
-    def load_users(self, users_file):
-        # Format: uid::gender::age::occupationcode::zipcode
-        # Stored: uid  gender  age  occupationcode  zipcode
-        # Types:  int  str     int  int             str
-        with open(users_file) as f:
+    def load_ratings(self, ratings_file):
+        # Format: mid::uid::rating::timestamp
+        with open(ratings_file) as f:
             for line in f:
                 attr = line.strip().split('::')
-                uid = int(attr[0])
-                gender = attr[1]
-                age = int(attr[2])
-                occupationcode = int(attr[3])
-                zipcode = attr[4] # because of zips like XXXXX-XXXX
+                mid = int(attr[0])
+                uid = int(attr[1])
+                rating = int(attr[2])
                 # Set attr
-                temp = {
-                    'gender': gender,
-                    'age': age,
-                    'occupationcode': occupationcode,
-                    'zipcode': zipcode
-                }
-                self.users[uid] = temp
+                self.ratings[mid] = {}
+                self.ratings[mid][uid] = rating
 
     # def print_user(self, uid):
     #     try:
