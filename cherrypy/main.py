@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python
 
 from _movie_database import _movie_database
 
@@ -18,4 +18,8 @@ if __name__ == '__main__':
 
     ## Testing users:
     mdb.load_users(users_file)
-    mdb.set_user(1, [1])
+    mdb.set_user(9999, ['M', 20, 999, 99999])
+    for i in mdb.get_users():
+        mdb.print_user(i)
+    mdb.delete_user(9999)
+    mdb.print_user(9999)

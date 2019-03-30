@@ -44,9 +44,11 @@ class _movie_database:
         return list(self.movies.keys())
 
     def set_movie(self, mid, movie):
-        if len(movie) != 2:
-            raise Exception('{} requires movie title and genre'.format( \
-                sys.getframe().f_code.co_name))
+        if len(movie) != 2 or not isinstance(movie[0], basestring) \
+                or not isinstance(movie[1], list) \
+                or not isinstance(movie[1][0], basestring):
+            raise Exception('database function {} requires '.format(sys._getframe().f_code.co_name) + \
+                            'movie\'s title(str) and genre(list(str))')
             return
         # genres is stored as a list of str currently
         temp = {
@@ -103,16 +105,27 @@ class _movie_database:
         return list(self.users.keys())
 
     def set_user(self, uid, user):
-        if len(user) != 4:
-            raise Exception('{} requires user gender, age, occupationcode and zipcode'.format( \
-                sys.getframe().f_code.co_name))
+        if len(user) != 4 or not isinstance(user[0], basestring) \
+            or not isinstance(user[1], (int, long)) \
+            or not isinstance(user[2], (int, long)) \
+            or not isinstance(user[3], basestring):
+            raise Exception('database function {} requires '.format(sys._getframe().f_code.co_name) + \
+                            'user\'s gender(str), age(int), occupationcode(int) and zipcode(str)')
             return
-        # genres is stored as a list of str currently
-        # temp = {
-        #     'title': movie[0],
-        #     'genres': movie[1]
-        # }
-        # self.movies[mid] = temp
+
+        temp = {
+            'gender': user[0],
+            'age': user[1],
+            'occupationcode': user[2],
+            'zipcode': user[3]
+        }
+        self.users[uid] = temp
+
+    def delete_user(self, uid):
+        try:
+            del self.users[uid]
+        except KeyError:
+            pass
 
 
 
