@@ -6,6 +6,7 @@ from _movie_database import _movie_database
 if __name__ == '__main__':
     # Testing OO backend
     movie_file = "./dat/movies.dat" 
+    users_file = "./dat/users.dat"
     mdb = _movie_database()
     ## Testing movies:
     # mdb.load_movies(movie_file)
@@ -14,3 +15,8 @@ if __name__ == '__main__':
     #     mdb.print_movie(i)
     # mdb.delete_movie(5000)
     # mdb.print_movie(5000)
+
+    ## Testing users:
+    mdb.load_users(users_file)
+    mdb.print_user(0)
+    mdb.print_user(1)
