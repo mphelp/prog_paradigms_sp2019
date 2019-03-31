@@ -132,6 +132,8 @@ class _movie_database:
             pass
 
     # Ratings
+    # Note: if mid, uid, and rating are ever in func args ...
+    #       then order is mid THEN uid!
     def load_ratings(self, ratings_file):
         # Format: mid::uid::rating::timestamp
         # Stored: mid  uid  rating
@@ -173,6 +175,24 @@ class _movie_database:
                 bestRating = rating
                 bestRatedMovie = mid
         return bestRatedMovie
+
+    def set_user_movie_rating(self, mid, uid, rating):
+        try:
+            self.ratings[mid][uid] = rating
+        except KeyError:
+            pass
+
+    def get_user_movie_rating(self, mid, uid):
+        try:
+            rating = self.movies[mid][uid]
+            return rating
+        except KeyError:
+            return None
+
+    def delete_all_ratings(self):
+        del self.ratings
+        self.ratings = {}
+            
 
             
     # def get_users(self):
