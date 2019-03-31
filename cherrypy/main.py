@@ -10,7 +10,7 @@ if __name__ == '__main__':
     ratings_file = "./dat/ratings.dat"
     mdb = _movie_database()
     ## Testing movies:
-    mdb.load_movies(movie_file)
+    # mdb.load_movies(movie_file)
     # mdb.set_movie(5000, ['James at the Laundromat', ['Action', 'Thriller']])
     # for i in mdb.get_movies():
     #     mdb.print_movie(i)
@@ -26,6 +26,30 @@ if __name__ == '__main__':
     # mdb.print_user(9999)
 
     ## Testing ratings:
-    mdb.load_ratings(ratings_file)
-    mdb.delete_all_ratings()
-    print(mdb.ratings)
+    # mdb.load_ratings(ratings_file)
+    # mdb.delete_all_ratings()
+    # print(mdb.ratings)
+
+    # Server setup
+    dispatcher = cherrypy.dispatch.RoutesDispatcher()
+
+    conf = { 'global': {'server.socket_host':'student04.cse.nd.edu',
+                        'server.socket_port':51002},
+              '/':{'request.dispatch':dispatcher}}
+
+    ## Controllers:
+    moviesController  = MoviesController(mdb)
+    usersController   = UsersController(mdb)
+    ratingsController = RatingsController(mdb)
+    resetController   = ResetController(mdb)
+    recommendationsController = RecommendationsController(mdb)
+
+    dispatcher.connect('hellow', '/helloworld/', controller=myController, action='GET_INDEX', conditions=dict(method=['GET']))
+
+    dispatcher.connect('hellowname', '/helloworld/', controller=myController, action='PUT_INDEX', conditions=dict(method=['PUT']))
+
+    ## Start
+    cherrypy.config.update(conf)
+    app = cherrypy.tree.mount(None, config=conf)
+    cherrypy.quickstart(app)
+

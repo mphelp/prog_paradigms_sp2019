@@ -11,6 +11,11 @@ class _movie_database:
         self.users  = dict()
         self.ratings = dict()
 
+    def __init__(self, movie_file, users_file, ratings_file):
+        self.load_movies(movie_file)
+        self.load_users(users_file)
+        self.load_ratings(ratings_file)
+
     # Movies
     def load_movies(self, movie_file):
         # Format: mid::title::genre|genre|genre
