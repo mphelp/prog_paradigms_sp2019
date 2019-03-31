@@ -1,6 +1,10 @@
 import sys
 
 # Backend DB
+# Note: Sometimes, a user method requires the a database dictionary
+#       other than user. The same can be said of movie or ratings.
+#       Thus, always load all three dat files into the movie database
+#       to ensure all three set of methods work properly.
 class _movie_database:
     def __init__(self):
         self.movies = dict()
@@ -153,9 +157,13 @@ class _movie_database:
             print(None)
 
     def get_rating(self, mid):
-        print(self.ratings[1])
-        # for uid, rating in self.ratings[mid].iteritems():
-        #     print('user {} rating {}'.format(uid, rating))
+        total = 0
+        count = 0
+        for uid, rating in self.ratings[mid].iteritems():
+            count += 1
+            total += rating
+        return float(total)/float(count)
+
 
     # def get_users(self):
     #     # list of mids

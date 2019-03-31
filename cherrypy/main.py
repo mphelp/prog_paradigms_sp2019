@@ -10,7 +10,7 @@ if __name__ == '__main__':
     ratings_file = "./dat/ratings.dat"
     mdb = _movie_database()
     ## Testing movies:
-    # mdb.load_movies(movie_file)
+    mdb.load_movies(movie_file)
     # mdb.set_movie(5000, ['James at the Laundromat', ['Action', 'Thriller']])
     # for i in mdb.get_movies():
     #     mdb.print_movie(i)
@@ -27,4 +27,7 @@ if __name__ == '__main__':
 
     ## Testing ratings:
     mdb.load_ratings(ratings_file)
-    mdb.get_rating(1)
+    print(mdb.get_movie(1))
+    print(mdb.get_rating(1))
+    print(mdb.get_movie(2))
+    print(mdb.get_rating(2))
