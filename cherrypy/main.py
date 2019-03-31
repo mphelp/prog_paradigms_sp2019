@@ -27,4 +27,4 @@ if __name__ == '__main__':
 
     ## Testing ratings:
     mdb.load_ratings(ratings_file)
-    print(mdb.ratings)
+    mdb.get_rating(1)

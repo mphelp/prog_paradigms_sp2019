@@ -130,6 +130,8 @@ class _movie_database:
     # Ratings
     def load_ratings(self, ratings_file):
         # Format: mid::uid::rating::timestamp
+        # Stored: mid  uid  rating
+        # Types:  int  int  int
         with open(ratings_file) as f:
             for line in f:
                 attr = line.strip().split('::')
@@ -137,23 +139,23 @@ class _movie_database:
                 uid = int(attr[1])
                 rating = int(attr[2])
                 # Set attr
-                self.ratings[mid] = {}
-                self.ratings[mid][uid] = rating
+                try:
+                    self.ratings[mid][uid] = rating
+                except KeyError:
+                    self.ratings[mid] = {}
+                    self.ratings[mid][uid] = rating
 
-    # def print_user(self, uid):
-    #     try:
-    #         print(self.users[uid])
-    #     except KeyError:
-    #         print(None)
 
-    # def get_user(self, uid):
-    #     try:
-    #         return [self.users[uid]['gender'], \
-    #                 self.users[uid]['age'], \
-    #                 self.users[uid]['occupationcode'], \
-    #                 self.users[uid]['zipcode']]
-    #     except KeyError:
-    #         return None
+    def print_rating(self, mid, uid):
+        try:
+            print(self.users[mid][uid])
+        except KeyError:
+            print(None)
+
+    def get_rating(self, mid):
+        print(self.ratings[1])
+        # for uid, rating in self.ratings[mid].iteritems():
+        #     print('user {} rating {}'.format(uid, rating))
 
     # def get_users(self):
     #     # list of mids
