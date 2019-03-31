@@ -27,7 +27,4 @@ if __name__ == '__main__':
 
     ## Testing ratings:
     mdb.load_ratings(ratings_file)
-    print(mdb.get_movie(1))
-    print(mdb.get_rating(1))
-    print(mdb.get_movie(2))
-    print(mdb.get_rating(2))
+    print(mdb.get_highest_rated_movie())

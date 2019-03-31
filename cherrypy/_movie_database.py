@@ -152,7 +152,7 @@ class _movie_database:
 
     def print_rating(self, mid, uid):
         try:
-            print(self.users[mid][uid])
+            print(self.ratings[mid][uid])
         except KeyError:
             print(None)
 
@@ -164,7 +164,17 @@ class _movie_database:
             total += rating
         return float(total)/float(count)
 
+    def get_highest_rated_movie(self):
+        bestRating = 1
+        bestRatedMovie  = None
+        for mid in self.movies.keys():
+            rating = self.get_rating(mid)
+            if rating > bestRating:
+                bestRating = rating
+                bestRatedMovie = mid
+        return bestRatedMovie
 
+            
     # def get_users(self):
     #     # list of mids
     #     return list(self.users.keys())
