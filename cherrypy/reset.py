@@ -1,9 +1,7 @@
 import cherrypy
 
 # Movies
-class MoviesController:
+class ResetController:
     def __init__(self, mdb):
         self.mdb = mdb
 
-    def GET_MOVIES(self):
-        pass

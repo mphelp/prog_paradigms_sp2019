@@ -12,6 +12,9 @@ class _movie_database:
         self.ratings = dict()
 
     def __init__(self, movie_file, users_file, ratings_file):
+        self.movies = dict()
+        self.users = dict()
+        self.ratings = dict()
         self.load_movies(movie_file)
         self.load_users(users_file)
         self.load_ratings(ratings_file)

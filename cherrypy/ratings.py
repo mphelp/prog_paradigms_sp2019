@@ -1,9 +1,9 @@
 import cherrypy
 
 # Movies
-class MoviesController:
+class RatingsController:
     def __init__(self, mdb):
         self.mdb = mdb
 
-    def GET_MOVIES(self):
+    def GET_RATINGS(self):
         pass
