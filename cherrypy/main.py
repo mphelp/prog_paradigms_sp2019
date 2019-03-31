@@ -1,6 +1,11 @@
 #!/usr/bin/python
 
 from _movie_database import _movie_database
+from movies import MoviesController
+from users import UsersController
+from ratings import RatingsController
+from reset import ResetController
+from recommendations import RecommendationsController
 
 # web services
 if __name__ == '__main__':
@@ -34,7 +39,7 @@ if __name__ == '__main__':
     dispatcher = cherrypy.dispatch.RoutesDispatcher()
 
     conf = { 'global': {'server.socket_host':'student04.cse.nd.edu',
-                        'server.socket_port':51002},
+                        'server.socket_port':51043},
               '/':{'request.dispatch':dispatcher}}
 
     ## Controllers:
