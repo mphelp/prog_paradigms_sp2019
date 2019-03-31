@@ -192,34 +192,4 @@ class _movie_database:
     def delete_all_ratings(self):
         del self.ratings
         self.ratings = {}
-            
-
-            
-    # def get_users(self):
-    #     # list of mids
-    #     return list(self.users.keys())
-
-    # def set_user(self, uid, user):
-    #     if len(user) != 4 or not isinstance(user[0], basestring) \
-    #         or not isinstance(user[1], (int, long)) \
-    #         or not isinstance(user[2], (int, long)) \
-    #         or not isinstance(user[3], basestring):
-    #         raise Exception('database function {} requires '.format(sys._getframe().f_code.co_name) + \
-    #                         'user\'s gender(str), age(int), occupationcode(int) and zipcode(str)')
-    #         return
-
-    #     temp = {
-    #         'gender': user[0],
-    #         'age': user[1],
-    #         'occupationcode': user[2],
-    #         'zipcode': user[3]
-    #     }
-    #     self.users[uid] = temp
-
-    # def delete_user(self, uid):
-    #     try:
-    #         del self.users[uid]
-    #     except KeyError:
-    #         pass
-
 
