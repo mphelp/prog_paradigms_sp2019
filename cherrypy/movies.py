@@ -23,7 +23,20 @@ class MoviesController:
         })
 
     def POST_MOVIES(self):
-        pass
+        movie = json.loads(str(cherrypy.request.body.read()),
+            encoding='latin-1')
+        # Example format of movie:
+        # {
+        #   'title': 'First Man',
+        #   'genres': 'Action|Thriller|Comedy'
+        # }
+        try:
+            new_movie_id = max(self.mdb.get_movies()) + 1
+            self.mdb.set_movie(new_movie_id, [movie['title'], \
+                movie['genres'].split('|')])
+            return json.dumps({ "result": "success", "id": new_movie_id })
+        except Exception:
+            return json.dumps({ "result": "failure" })
 
     def DELETE_MOVIES(self):
         for movie_id in self.mdb.get_movies():

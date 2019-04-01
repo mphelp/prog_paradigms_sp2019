@@ -38,18 +38,18 @@ if __name__ == '__main__':
     dispatcher.connect('movieD', '/movies/:movie_id', controller=moviesController, 
         action='DELETE_MOVIE', conditions=dict(method=['DELETE']))
 
-    dispatcher.connect('moviesG', '/movies', controller=moviesController, 
+    dispatcher.connect('moviesG', '/movies/', controller=moviesController, 
         action='GET_MOVIES', conditions=dict(method=['GET']))
-    dispatcher.connect('moviesPO', '/movies', controller=moviesController, 
+    dispatcher.connect('moviesPO', '/movies/', controller=moviesController, 
         action='POST_MOVIES', conditions=dict(method=['POST']))
-    dispatcher.connect('moviesD', '/movies', controller=moviesController, 
+    dispatcher.connect('moviesD', '/movies/', controller=moviesController, 
         action='DELETE_MOVIES', conditions=dict(method=['DELETE']))
 
     usersController   = UsersController(mdb)
     ratingsController = RatingsController(mdb)
     resetController   = ResetController(mdb)
 
-    dispatcher.connect('resetallP', '/reset', controller=resetController, 
+    dispatcher.connect('resetallP', '/reset/', controller=resetController, 
         action='PUT_RESET_ALL', conditions=dict(method=['PUT']))
     dispatcher.connect('resetP', '/reset/:movie_id', controller=resetController, 
         action='PUT_RESET_MOVIE', conditions=dict(method=['PUT']))
