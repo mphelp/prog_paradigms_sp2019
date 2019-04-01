@@ -22,6 +22,14 @@ class MoviesController:
             "result": "success"
         })
 
+    def DELETE_MOVIES(self):
+        for movie_id in self.mdb.get_movies():
+            try:
+                self.mdb.delete_movie(movie_id)
+            except KeyError:
+                pass
+        return json.dumps({ "result": "success" })
+
     def GET_MOVIE(self, movie_id):
         movie_id = int(movie_id)
         movie = self.mdb.get_movie(movie_id)

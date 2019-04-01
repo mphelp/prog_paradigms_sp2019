@@ -70,10 +70,8 @@ class _movie_database:
         self.movies[mid] = temp
 
     def delete_movie(self, mid):
-        try:
-            del self.movies[mid]
-        except KeyError:
-            pass
+        # account for KeyError in moviesController
+        del self.movies[mid]
     
     # Users
     def load_users(self, users_file):

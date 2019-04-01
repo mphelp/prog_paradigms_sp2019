@@ -30,17 +30,27 @@ if __name__ == '__main__':
 
     ## Controllers:
     moviesController  = MoviesController(mdb)
+
+    dispatcher.connect('movieG', '/movies/:movie_id', controller=moviesController, 
+        action='GET_MOVIE', conditions=dict(method=['GET']))
+    dispatcher.connect('moviePU', '/movies/:movie_id', controller=moviesController, 
+        action='PUT_MOVIE', conditions=dict(method=['PUT']))
+    dispatcher.connect('movieD', '/movies/:movie_id', controller=moviesController, 
+        action='DELETE_MOVIE', conditions=dict(method=['DELETE']))
+
+    dispatcher.connect('moviesG', '/movies', controller=moviesController, 
+        action='GET_MOVIES', conditions=dict(method=['GET']))
+    dispatcher.connect('moviesPO', '/movies', controller=moviesController, 
+        action='POST_MOVIES', conditions=dict(method=['POST']))
+    dispatcher.connect('moviesD', '/movies', controller=moviesController, 
+        action='DELETE_MOVIES', conditions=dict(method=['DELETE']))
+
     usersController   = UsersController(mdb)
     ratingsController = RatingsController(mdb)
     resetController   = ResetController(mdb)
     recommendationsController = RecommendationsController(mdb)
 
-    dispatcher.connect('movieG', '/movies/:movie_id', controller=moviesController, 
-        action='GET_MOVIE', conditions=dict(method=['GET']))
-
-    dispatcher.connect('moviesG', '/movies', controller=moviesController, 
-        action='GET_MOVIES', conditions=dict(method=['GET']))
-
+    
     # dispatcher.connect('hellowname', '/helloworld/', controller=myController, action='PUT_INDEX', conditions=dict(method=['PUT']))
 
     ## Start
