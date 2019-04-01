@@ -16,6 +16,7 @@ class _movie_database:
         self.users = dict()
         self.ratings = dict()
         self.images = dict()
+        self.recommendations = dict()
         self.movie_file = movie_file
         self.users_file = users_file
         self.ratings_file = ratings_file
@@ -201,13 +202,10 @@ class _movie_database:
         return bestRatedMovie
 
     def set_user_movie_rating(self, mid, uid, rating):
-        try:
-            mid = int(mid)
-            uid = int(uid)
-            rating = int(rating)
-            self.ratings[mid][uid] = rating
-        except KeyError:
-            pass
+        mid = int(mid)
+        uid = int(uid)
+        rating = int(rating)
+        self.ratings[mid][uid] = rating
 
     def get_user_movie_rating(self, mid, uid):
         try:
@@ -271,4 +269,32 @@ class _movie_database:
             return self.images[mid]
         except KeyError:
             return None
+
+    # Recommendations
+    def delete_recommendations(self):
+        del self.recommendations
+        self.recommendations = {}
+
+    def get_recommendation(self, uid):
+
+        bestRating = 1
+        bestRatedMovie = None
+        uid = int(uid)
+
+        for mid in self.movies.keys():
+            rating = self.get_rating(mid)
+            if rating > bestRating and \
+                    self.get_user_movie_rating(mid, uid) == None:
+                bestRating = rating
+                bestRatedMovie = mid
+
+        self.set_recommendation(self, uid, bestRatedMovie)
+        return bestRatedMovie
+
+    def set_recommendation(self, mid, uid, rating):
+        try:
+            self.set_user_movie_rating(mid, uid, rating)
+        except KeyError:
+            pass
+
 
