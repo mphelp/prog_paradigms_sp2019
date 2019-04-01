@@ -57,7 +57,7 @@ class _movie_database:
         try:
             mid = int(mid)
             return [self.movies[mid]['title'], \
-                    '--'.join(self.movies[mid]['genres'])]
+                    '|'.join(self.movies[mid]['genres'])]
         except KeyError:
             return None
 
@@ -266,7 +266,7 @@ class _movie_database:
                 mid = int(attr[0])
                 img = attr[2]
                 # Set attr
-                self.images[mid] = img[1:]
+                self.images[mid] = img
 
     def get_image(self, mid):
         try:

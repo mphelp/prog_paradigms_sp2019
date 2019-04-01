@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 import cherrypy
 
@@ -24,7 +24,7 @@ if __name__ == '__main__':
     # studentconf = { 'global': {'server.socket_host':'student04.cse.nd.edu',
     #                     'server.socket_port':51043},
     #           '/':{'request.dispatch':dispatcher}}
-    conf = { 'global': {'server.socket_host':'localhost',
+    conf = { 'global': {'server.socket_host':'student04.cse.nd.edu',
                         'server.socket_port':51043},
               '/':{'request.dispatch':dispatcher}}
 
