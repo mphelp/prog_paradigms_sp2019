@@ -15,6 +15,9 @@ class _movie_database:
         self.movies = dict()
         self.users = dict()
         self.ratings = dict()
+        self.movie_file = movie_file
+        self.users_file = users_file
+        self.ratings_file = ratings_file
         self.load_movies(movie_file)
         self.load_users(users_file)
         self.load_ratings(ratings_file)
@@ -198,4 +201,34 @@ class _movie_database:
     def delete_all_ratings(self):
         del self.ratings
         self.ratings = {}
+
+    # Recommendations
+
+    # Reset
+    def reset_all(self):
+        del self.movies
+        del self.users
+        del self.ratings
+        self.movies = dict()
+        self.users = dict()
+        self.ratings = dict()
+        self.load_movies(self.movie_file)
+        self.load_users(self.users_file)
+        self.load_ratings(self.ratings_file)
+
+    def reset_movie(self, mid):
+        with open(movie_file) as f:
+            for line in f:
+                attr = line.strip().split('::')
+                movie_id = int(attr[0])
+                if mid == movie_id:
+                    title = attr[1]
+                    genres = attr[2].split('|')
+                    # Set attr
+                    self.movies[mid] = {
+                        'title': title,
+                        'genres': genres
+                    }
+                    break
+
 

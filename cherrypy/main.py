@@ -48,6 +48,13 @@ if __name__ == '__main__':
     usersController   = UsersController(mdb)
     ratingsController = RatingsController(mdb)
     resetController   = ResetController(mdb)
+
+    dispatcher.connect('resetallP', '/reset', controller=resetController, 
+        action='PUT_RESET_ALL', conditions=dict(method=['PUT']))
+    dispatcher.connect('resetP', '/reset/:movie_id', controller=resetController, 
+        action='PUT_RESET_MOVIE', conditions=dict(method=['PUT']))
+
+
     recommendationsController = RecommendationsController(mdb)
 
     
