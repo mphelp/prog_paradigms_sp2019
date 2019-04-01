@@ -54,6 +54,18 @@ class MoviesController:
         #   'title': 'First Man',
         #   'genres': 'Action|Thriller|Comedy'
         # }
-        print(movie)
-        self.mdb.set_movie(movie_id, [movie['title'], \
-            movie['genres'].split('|')])
+        try:
+            self.mdb.set_movie(movie_id, [movie['title'], \
+                movie['genres'].split('|')])
+            return json.dumps({ "result": "success" })
+        except Exception:
+            return json.dumps({ "result": "failure" })
+
+
+    def DELETE_MOVIE(self, movie_id):
+        try:
+            self.mdb.delete_movie(movie_id)
+            return json.dumps({ "result": "success" })
+        except KeyError:
+            return json.dumps({ "result": "failure" })
+
