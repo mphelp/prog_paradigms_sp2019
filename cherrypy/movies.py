@@ -64,7 +64,7 @@ class MoviesController:
             })
 
     def PUT_MOVIE(self, movie_id):
-        movie = json.loads(str(cherrypy.request.body.read()), 
+        movie = json.loads((cherrypy.request.body.read()), \
             encoding='latin-1')
         # Example format of movie:
         # {
@@ -75,8 +75,11 @@ class MoviesController:
             self.mdb.set_movie(movie_id, [movie['title'], \
                 movie['genres'].split('|')])
             return json.dumps({ "result": "success" })
-        except Exception:
-            return json.dumps({ "result": "error" })
+        except Exception as e:
+            return json.dumps({ 
+								"result": "error",
+								"msg": str(e)
+			 			})
 
 
     def DELETE_MOVIE(self, movie_id):

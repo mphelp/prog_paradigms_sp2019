@@ -66,9 +66,9 @@ class _movie_database:
         return list(self.movies.keys())
 
     def set_movie(self, mid, movie):
-        if len(movie) != 2 or not isinstance(movie[0], basestring) \
+        if not isinstance(movie[0], str) \
                 or not isinstance(movie[1], list) \
-                or not isinstance(movie[1][0], basestring):
+                or not isinstance(movie[1][0], str):
             raise Exception('database function {} requires '.format(sys._getframe().f_code.co_name) + \
                             'movie\'s title(str) and genre(list(str))')
             return
@@ -129,10 +129,10 @@ class _movie_database:
         return list(self.users.keys())
 
     def set_user(self, uid, user):
-        if len(user) != 4 or not isinstance(user[0], basestring) \
+        if not isinstance(user[0], str) \
             or not isinstance(user[1], (int, long)) \
             or not isinstance(user[2], (int, long)) \
-            or not isinstance(user[3], basestring):
+            or not isinstance(user[3], str):
             raise Exception('database function {} requires '.format(sys._getframe().f_code.co_name) + \
                             'user\'s gender(str), age(int), occupationcode(int) and zipcode(str)')
             return
