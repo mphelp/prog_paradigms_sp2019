@@ -11,16 +11,19 @@ class _movie_database:
         self.users  = dict()
         self.ratings = dict()
 
-    def __init__(self, movie_file, users_file, ratings_file):
+    def __init__(self, movie_file, users_file, ratings_file, images_file):
         self.movies = dict()
         self.users = dict()
         self.ratings = dict()
+        self.images = dict()
         self.movie_file = movie_file
         self.users_file = users_file
         self.ratings_file = ratings_file
+        self.images_file = images_file
         self.load_movies(movie_file)
         self.load_users(users_file)
         self.load_ratings(ratings_file)
+        self.load_images(images_file)
 
     # Movies
     def load_movies(self, movie_file):
@@ -249,4 +252,16 @@ class _movie_database:
                     }
                     break
 
+    # Images
+    def load_images(self, images_file):
+        # Format: mid::uid::rating::timestamp
+        # Stored: mid  uid  rating
+        # Types:  int  int  int
+        with open(images_file) as f:
+            for line in f:
+                attr = line.strip().split('::')
+                mid = int(attr[0])
+                img = attr[2]
+                # Set attr
+                self.images[mid] = img[1:]
 

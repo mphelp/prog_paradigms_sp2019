@@ -15,7 +15,8 @@ if __name__ == '__main__':
     movie_file = "./dat/movies.dat" 
     users_file = "./dat/users.dat"
     ratings_file = "./dat/ratings.dat"
-    mdb = _movie_database(movie_file, users_file, ratings_file)
+    images_file = "./dat/images.dat"
+    mdb = _movie_database(movie_file, users_file, ratings_file, images_file)
 
     # Server setup
     dispatcher = cherrypy.dispatch.RoutesDispatcher()
