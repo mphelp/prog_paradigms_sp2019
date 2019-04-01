@@ -38,6 +38,9 @@ if __name__ == '__main__':
     dispatcher.connect('movieG', '/movies/:movie_id', controller=moviesController, 
         action='GET_MOVIE', conditions=dict(method=['GET']))
 
+    dispatcher.connect('moviesG', '/movies', controller=moviesController, 
+        action='GET_MOVIES', conditions=dict(method=['GET']))
+
     # dispatcher.connect('hellowname', '/helloworld/', controller=myController, action='PUT_INDEX', conditions=dict(method=['PUT']))
 
     ## Start
