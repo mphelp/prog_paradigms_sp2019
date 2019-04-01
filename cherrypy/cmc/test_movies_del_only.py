@@ -4,7 +4,7 @@ import json
 
 class TestMoviesDelOnly(unittest.TestCase):
 
-	SITE_URL = 'http://ash.campus.nd.edu:40001'
+	SITE_URL = 'http://student04.cse.nd.edu:51043'
 	MOVIES_URL = SITE_URL + '/movies/'
 	RESET_URL = SITE_URL + '/reset/'
 

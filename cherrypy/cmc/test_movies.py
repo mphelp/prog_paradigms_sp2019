@@ -6,7 +6,7 @@ class TestMovies(unittest.TestCase):
 
 	#@classmethod
 	#def setUpClass(self):
-	SITE_URL = 'http://student04.cse.nd.edu:51001'
+	SITE_URL = 'http://student04.cse.nd.edu:51043'
 	MOVIES_URL = SITE_URL + '/movies/'
 	RESET_URL = SITE_URL + '/reset/'
 
@@ -52,6 +52,7 @@ class TestMovies(unittest.TestCase):
 		self.assertEqual(resp['result'], 'success')
 
 		r = requests.get(self.MOVIES_URL + str(movie_id))
+		print(r.content.decode('utf-8'))
 		self.assertTrue(self.is_json(r.content.decode('utf-8')))
 		resp = json.loads(r.content.decode('utf-8'))
 		self.assertEqual(resp['title'], m['title'])

@@ -6,7 +6,7 @@ class TestRecommendations(unittest.TestCase):
 
 	#@classmethod
 	#def setUpClass(self):
-	SITE_URL = 'http://ash.campus.nd.edu:40001'
+	SITE_URL = 'http://student04.cse.nd.edu:51043'
 	RECOMMENDATIONS_URL = SITE_URL + '/recommendations/'
 	RATINGS_URL = SITE_URL + '/ratings/'
 	RESET_URL = SITE_URL + '/reset/'
