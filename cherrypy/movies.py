@@ -10,12 +10,14 @@ class MoviesController:
         movies = []
         for movie_id in self.mdb.get_movies():
             movie = self.mdb.get_movie(movie_id)
-            if movie is not None:
+            image = self.mdb.get_image(movie_id)
+            if movie is not None and image is not None:
                 movies.append({
                     "genres": movie[1],
                     "title" : movie[0],
                     "result": "success",
-                    "id"    : movie_id
+                    "id"    : movie_id,
+                    "img"   : image
                 })
         return json.dumps({
             "movies": movies,
@@ -49,14 +51,16 @@ class MoviesController:
     def GET_MOVIE(self, movie_id):
         movie_id = int(movie_id)
         movie = self.mdb.get_movie(movie_id)
-        if movie is None:
+        image = self.mdb.get_image(movie_id)
+        if movie is None or image is None:
             return json.dumps({ "result": "failure" })
         else:
             return json.dumps({
                 "genres": movie[1],
                 "title" : movie[0],
                 "result": "success",
-                "id"    : movie_id
+                "id"    : movie_id,
+                "img"   : image,
             })
 
     def PUT_MOVIE(self, movie_id):

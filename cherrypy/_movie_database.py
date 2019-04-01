@@ -265,3 +265,10 @@ class _movie_database:
                 # Set attr
                 self.images[mid] = img[1:]
 
+    def get_image(self, mid):
+        try:
+            mid = int(mid)
+            return self.images[mid]
+        except KeyError:
+            return None
+
