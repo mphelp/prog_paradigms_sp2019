@@ -280,6 +280,9 @@ class _movie_database:
         bestRating = 1
         bestRatedMovie = None
         uid = int(uid)
+        # User not exist
+        if self.get_user(uid) == None:
+            return None
 
         for mid in self.movies.keys():
             rating = self.get_rating(mid)
