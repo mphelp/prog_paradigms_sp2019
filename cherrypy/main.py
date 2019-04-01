@@ -47,6 +47,22 @@ if __name__ == '__main__':
         action='DELETE_MOVIES', conditions=dict(method=['DELETE']))
 
     usersController   = UsersController(mdb)
+
+    dispatcher.connect('userG', '/users/:user_id', controller=usersController, 
+        action='GET_USER', conditions=dict(method=['GET']))
+    dispatcher.connect('userPU', '/users/:user_id', controller=usersController, 
+        action='PUT_USER', conditions=dict(method=['PUT']))
+    dispatcher.connect('userD', '/users/:user_id', controller=usersController, 
+        action='DELETE_USER', conditions=dict(method=['DELETE']))
+
+    dispatcher.connect('usersG', '/users/', controller=usersController, 
+        action='GET_USERS', conditions=dict(method=['GET']))
+    dispatcher.connect('usersPO', '/users/', controller=usersController, 
+        action='POST_USERS', conditions=dict(method=['POST']))
+    dispatcher.connect('usersD', '/users/', controller=usersController, 
+        action='DELETE_USERS', conditions=dict(method=['DELETE']))
+
+
     ratingsController = RatingsController(mdb)
     resetController   = ResetController(mdb)
 
