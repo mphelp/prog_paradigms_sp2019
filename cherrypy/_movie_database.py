@@ -183,6 +183,7 @@ class _movie_database:
             print(None)
 
     def get_rating(self, mid):
+        mid = int(mid)
         try:
             sampleRating = self.ratings[mid] # to check if ratings exists
         except KeyError:
@@ -190,11 +191,15 @@ class _movie_database:
 
         total = 0
         count = 0
-        mid = int(mid)
-        for uid, rating in self.ratings[mid].iteritems():
-            count += 1
-            total += rating
-        return float(total)/float(count)
+        
+        ratings = [float(rating) for uid, rating in self.ratings[mid].items()]
+        avgRating = sum(ratings)/len(ratings)
+        #for uid, rating in self.ratings[mid].items():
+        #     count += 1
+        #     total += rating
+        #     print(uid, rating)
+        #return float(total)/float(count)
+        return avgRating
 
     def get_highest_rated_movie(self):
         bestRating = 1
