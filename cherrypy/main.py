@@ -35,7 +35,8 @@ if __name__ == '__main__':
     resetController   = ResetController(mdb)
     recommendationsController = RecommendationsController(mdb)
 
-    # dispatcher.connect('hellow', '/helloworld/', controller=myController, action='GET_INDEX', conditions=dict(method=['GET']))
+    dispatcher.connect('movieG', '/movies/:movie_id', controller=moviesController, 
+        action='GET_MOVIE', conditions=dict(method=['GET']))
 
     # dispatcher.connect('hellowname', '/helloworld/', controller=myController, action='PUT_INDEX', conditions=dict(method=['PUT']))
 
