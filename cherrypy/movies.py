@@ -22,6 +22,9 @@ class MoviesController:
             "result": "success"
         })
 
+    def POST_MOVIES(self):
+        pass
+
     def DELETE_MOVIES(self):
         for movie_id in self.mdb.get_movies():
             try:
@@ -43,3 +46,14 @@ class MoviesController:
                 "id"    : movie_id
             })
 
+    def PUT_MOVIE(self, movie_id):
+        movie = json.loads(str(cherrypy.request.body.read()), 
+            encoding='latin-1')
+        # Example format of movie:
+        # {
+        #   'title': 'First Man',
+        #   'genres': 'Action|Thriller|Comedy'
+        # }
+        print(movie)
+        self.mdb.set_movie(movie_id, [movie['title'], \
+            movie['genres'].split('|')])

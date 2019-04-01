@@ -38,10 +38,12 @@ class _movie_database:
                     'title': title,
                     'genres': genres
                 }
+                mid = int(mid)
                 self.movies[mid] = temp
 
     def print_movie(self, mid):
         try:
+            mid = int(mid)
             print(self.movies[mid])
         except KeyError:
             print(None)
@@ -49,6 +51,7 @@ class _movie_database:
     def get_movie(self, mid):
         # genres returned as string not list
         try:
+            mid = int(mid)
             return [self.movies[mid]['title'], \
                     '--'.join(self.movies[mid]['genres'])]
         except KeyError:
@@ -70,10 +73,12 @@ class _movie_database:
             'title': movie[0],
             'genres': movie[1]
         }
+        mid = int(mid)
         self.movies[mid] = temp
 
     def delete_movie(self, mid):
         # account for KeyError in moviesController
+        mid = int(mid)
         del self.movies[mid]
     
     # Users
@@ -100,12 +105,14 @@ class _movie_database:
 
     def print_user(self, uid):
         try:
+            uid = int(uid)
             print(self.users[uid])
         except KeyError:
             print(None)
 
     def get_user(self, uid):
         try:
+            uid = int(uid)
             return [self.users[uid]['gender'], \
                     self.users[uid]['age'], \
                     self.users[uid]['occupationcode'], \
@@ -132,10 +139,12 @@ class _movie_database:
             'occupationcode': user[2],
             'zipcode': user[3]
         }
+        uid = int(uid)
         self.users[uid] = temp
 
     def delete_user(self, uid):
         try:
+            uid = int(uid)
             del self.users[uid]
         except KeyError:
             pass
@@ -163,6 +172,8 @@ class _movie_database:
 
     def print_rating(self, mid, uid):
         try:
+            mid = int(mid)
+            uid = int(uid)
             print(self.ratings[mid][uid])
         except KeyError:
             print(None)
@@ -170,6 +181,7 @@ class _movie_database:
     def get_rating(self, mid):
         total = 0
         count = 0
+        mid = int(mid)
         for uid, rating in self.ratings[mid].iteritems():
             count += 1
             total += rating
@@ -187,12 +199,17 @@ class _movie_database:
 
     def set_user_movie_rating(self, mid, uid, rating):
         try:
+            mid = int(mid)
+            uid = int(uid)
+            rating = int(rating)
             self.ratings[mid][uid] = rating
         except KeyError:
             pass
 
     def get_user_movie_rating(self, mid, uid):
         try:
+            mid = int(mid)
+            uid = int(uid)
             rating = self.movies[mid][uid]
             return rating
         except KeyError:
@@ -217,6 +234,7 @@ class _movie_database:
         self.load_ratings(self.ratings_file)
 
     def reset_movie(self, mid):
+        mid = int(mid)
         with open(movie_file) as f:
             for line in f:
                 attr = line.strip().split('::')
