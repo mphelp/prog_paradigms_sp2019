@@ -1,4 +1,5 @@
 import cherrypy
+import json
 
 # Movies
 class RecommendationsController:
@@ -18,5 +19,17 @@ class RecommendationsController:
             })
 
     def PUT_RECOMMENDATION(self, user_id):
-        self.mdb.set_recommendation(user_id)
+        recommendation = json.loads(str(cherrypy.request.body.read()))
+        print(recommendation)
+        self.mdb.set_recommendation(recommendation['movie_id'], \
+            user_id, recommendation['rating'])
+        return json.dumps({
+            "result": "success"
+        })
+
+    def DELETE_RECOMMENDATIONS(self):
+        self.mdb.delete_recommendations()
+        return json.dumps({
+            "result": "success"
+        })
 

@@ -64,6 +64,19 @@ if __name__ == '__main__':
 
 
     ratingsController = RatingsController(mdb)
+
+    dispatcher.connect('ratingG', '/ratings/:movie_id', controller=ratingsController, 
+        action='GET_RATING', conditions=dict(method=['GET']))
+
+    recommendationsController = RecommendationsController(mdb)
+
+    dispatcher.connect('recommendationsD', '/recommendations/', controller=recommendationsController, 
+        action='DELETE_RECOMMENDATIONS', conditions=dict(method=['DELETE']))
+    dispatcher.connect('recommendationPU', '/recommendations/:user_id', controller=recommendationsController, 
+        action='PUT_RECOMMENDATION', conditions=dict(method=['PUT']))
+    dispatcher.connect('recommendationG', '/recommendations/:user_id', controller=recommendationsController, 
+        action='GET_RECOMMENDATION', conditions=dict(method=['GET']))
+    
     resetController   = ResetController(mdb)
 
     dispatcher.connect('resetallP', '/reset/', controller=resetController, 
@@ -71,11 +84,6 @@ if __name__ == '__main__':
     dispatcher.connect('resetP', '/reset/:movie_id', controller=resetController, 
         action='PUT_RESET_MOVIE', conditions=dict(method=['PUT']))
 
-
-    recommendationsController = RecommendationsController(mdb)
-
-    
-    # dispatcher.connect('hellowname', '/helloworld/', controller=myController, action='PUT_INDEX', conditions=dict(method=['PUT']))
 
     ## Start
     cherrypy.config.update(conf)

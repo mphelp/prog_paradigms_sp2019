@@ -183,6 +183,11 @@ class _movie_database:
             print(None)
 
     def get_rating(self, mid):
+        try:
+            sampleRating = self.ratings[mid] # to check if ratings exists
+        except KeyError:
+            return None
+
         total = 0
         count = 0
         mid = int(mid)
@@ -273,7 +278,9 @@ class _movie_database:
     # Recommendations
     def delete_recommendations(self):
         del self.recommendations
+        del self.ratings
         self.recommendations = {}
+        self.ratings = {}
 
     def get_recommendation(self, uid):
 
@@ -291,7 +298,7 @@ class _movie_database:
                 bestRating = rating
                 bestRatedMovie = mid
 
-        self.set_recommendation(self, uid, bestRatedMovie)
+        self.set_recommendation(bestRatedMovie, uid, bestRating)
         return bestRatedMovie
 
     def set_recommendation(self, mid, uid, rating):

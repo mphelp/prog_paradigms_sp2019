@@ -7,9 +7,15 @@ class RatingsController:
         self.mdb = mdb
 
     def GET_RATING(self, movie_id):
-        rating = self.get_rating(mid)
-        return json.dumps({
-            "rating": rating,
-            "movie_id": movie_id,
-            "result": "success"
-        })
+        movie_id = int(movie_id)
+        rating = self.mdb.get_rating(movie_id)
+        if rating is None:
+            return json.dumps({
+                "result": "failure"
+            })
+        else:
+            return json.dumps({
+                "rating": rating,
+                "movie_id": movie_id,
+                "result": "success"
+            })
