@@ -1,1 +1,2 @@
 ./cherrypy/*.pyc
+./cherrypy/__pycache__
