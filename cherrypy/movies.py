@@ -7,3 +7,7 @@ class MoviesController:
 
     def GET_MOVIES(self):
         pass
+
+    def GET_MOVIE(self, movie_id)
+        movie_id = int(movie_id)
+

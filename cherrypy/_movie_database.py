@@ -47,7 +47,7 @@ class _movie_database:
         # genres returned as string not list
         try:
             return [self.movies[mid]['title'], \
-                    ' '.join(self.movies[mid]['genres'])]
+                    '--'.join(self.movies[mid]['genres'])]
         except KeyError:
             return None
 
