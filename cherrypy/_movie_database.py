@@ -1,4 +1,5 @@
 import sys
+from statistics import mean
 
 # Backend DB
 # Note: Sometimes, a user method requires the a database dictionary
@@ -25,8 +26,6 @@ class _movie_database:
         self.load_users(users_file)
         self.load_ratings(ratings_file)
         self.load_images(images_file)
-
-        print('number 6029: {}'.format(self.users[6029]))
 
     # Movies
     def load_movies(self, movie_file):
@@ -160,14 +159,14 @@ class _movie_database:
     # Note: if mid, uid, and rating are ever in func args ...
     #       then order is mid THEN uid!
     def load_ratings(self, ratings_file):
-        # Format: mid::uid::rating::timestamp
-        # Stored: mid  uid  rating
+        # Format: uid::mid::rating::timestamp
+        # Stored: uid  mid  rating
         # Types:  int  int  int
         with open(ratings_file) as f:
             for line in f:
                 attr = line.strip().split('::')
-                mid = int(attr[0])
-                uid = int(attr[1])
+                uid = int(attr[0])
+                mid = int(attr[1])
                 rating = int(attr[2])
                 # Set attr
                 try:
@@ -191,18 +190,17 @@ class _movie_database:
             sampleRating = self.ratings[mid] # to check if ratings exists
         except KeyError:
             return None
-
-        total = 0
-        count = 0
-        
-        ratings = [float(rating) for uid, rating in self.ratings[mid].items()]
-        avgRating = sum(ratings)/len(ratings)
-        #for uid, rating in self.ratings[mid].items():
-        #     count += 1
-        #     total += rating
-        #     print(uid, rating)
-        #return float(total)/float(count)
-        return avgRating
+        ratings = []
+        ##try:
+        ##     for uid, mid in self.ratings.items():
+        ##           first, second = next(iter(mid.items()))
+        ##           ratings.append(float(second)) 
+        #####ratings = [float(next(iter(list(mid.items())[0]))) for uid, mid in self.ratings.items()]
+        ratings = [(uid, rating)[1] for uid, rating in self.ratings[mid].items()]
+        ##     print('avg: {}'.format(mean(ratings)))
+        return mean(ratings)
+        #except KeyError:
+        #     return 0
 
     def get_highest_rated_movie(self):
         bestRating = 1
@@ -291,7 +289,7 @@ class _movie_database:
         self.ratings = {}
 
     def get_recommendation(self, uid):
-
+        '''
         bestRating = 1
         bestRatedMovie = None
         uid = int(uid)
@@ -301,13 +299,18 @@ class _movie_database:
 
         for mid in self.movies.keys():
             rating = self.get_rating(mid)
-            if rating > bestRating and \
-                    self.get_user_movie_rating(mid, uid) == None:
+            if rating > bestRating and self.get_user_movie_rating(mid, uid) is None:
                 bestRating = rating
                 bestRatedMovie = mid
-
-        self.set_recommendation(bestRatedMovie, uid, bestRating)
-        return bestRatedMovie
+        '''
+        sortedMovies = sorted(self.get_movies(), key=lambda mid: 0 if self.get_rating(mid) is None else self.get_rating(mid), reverse=True)
+        #print(sortedMovies[0])
+        #print(self.get_user_movie_rating(787, int(uid)))
+        for mid in sortedMovies:
+            if self.get_user_movie_rating(int(mid), int(uid)) == None:
+                return mid
+        #self.set_recommendation(bestRatedMovie, uid, bestRating)
+        return None
 
     def set_recommendation(self, mid, uid, rating):
         try:

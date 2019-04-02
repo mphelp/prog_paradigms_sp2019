@@ -14,7 +14,7 @@ class UsersController:
                 users.append({
                     "gender": user[0],
                     "age": user[1],
-                    "occupationcode": user[2],
+                    "occupation": user[2],
                     "zipcode": user[3],
                     "result": "success",
                     "id": user_id
@@ -31,13 +31,13 @@ class UsersController:
         # {
         #   'gender': 'F',
         #   'age': 13,
-        #   'occupationcode': 1333,
+        #   'occupation': 1333,
         #   'zipcode': '5555-4444'
         # }
         try:
             new_user_id = max(self.mdb.get_users()) + 1
             self.mdb.set_user(new_user_id, [user['gender'], \
-                user['age'], user['occupationcode'], user['zipcode']])
+                user['age'], user['occupation'], user['zipcode']])
             return json.dumps({ "result": "success", "id": new_user_id })
         except Exception:
             return json.dumps({ "result": "error" })
@@ -59,7 +59,7 @@ class UsersController:
             return json.dumps({
                 "gender": user[0],
                 "age": user[1],
-                "occupationcode": user[2],
+                "occupation": user[2],
                 "zipcode": user[3],
                 "result": "success",
                 "id": user_id
@@ -75,12 +75,12 @@ class UsersController:
         # {
         #   'gender': 'F',
         #   'age': 13,
-        #   'occupationcode': 1333,
+        #   'occupation': 1333,
         #   'zipcode': '5555-4444'
         # }
         #try:
         #    self.mdb.set_user(user_id, [user['gender'], \
-        #        user['age'], user['occupationcode'], user['zipcode']])
+        #        user['age'], user['occupation'], user['zipcode']])
         #    return json.dumps({ "result": "success" }) 
         #except Exception as e:
         #    print(str(e))
@@ -89,7 +89,7 @@ class UsersController:
         #       "msg": str(e)
         #    })
         self.mdb.set_user(user_id, [user['gender'], \
-             user['age'], user['occupationcode'], user['zipcode']])
+             user['age'], user['occupation'], user['zipcode']])
         return json.dumps({ "result": "success" })
 
 
