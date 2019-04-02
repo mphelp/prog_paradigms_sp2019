@@ -11,7 +11,7 @@ class MoviesController:
         for movie_id in self.mdb.get_movies():
             movie = self.mdb.get_movie(movie_id)
             image = self.mdb.get_image(movie_id)
-            if movie is not None and image is not None:
+            if movie is not None:
                 movies.append({
                     "genres": movie[1],
                     "title" : movie[0],
@@ -25,7 +25,7 @@ class MoviesController:
         })
 
     def POST_MOVIES(self):
-        movie = json.loads(str(cherrypy.request.body.read()),
+        movie = json.loads(cherrypy.request.body.read(),
             encoding='latin-1')
         # Example format of movie:
         # {
@@ -37,8 +37,11 @@ class MoviesController:
             self.mdb.set_movie(new_movie_id, [movie['title'], \
                 movie['genres'].split('|')])
             return json.dumps({ "result": "success", "id": new_movie_id })
-        except Exception:
-            return json.dumps({ "result": "error" })
+        except Exception as e:
+            return json.dumps({ 
+               "result": "error", 
+               "msg": e 
+            })
 
     def DELETE_MOVIES(self):
         for movie_id in self.mdb.get_movies():
@@ -51,8 +54,10 @@ class MoviesController:
     def GET_MOVIE(self, movie_id):
         movie_id = int(movie_id)
         movie = self.mdb.get_movie(movie_id)
+        #print('movie: {}'.format(movie))
         image = self.mdb.get_image(movie_id)
-        if movie is None or image is None:
+        #print('image: {}'.format(image))
+        if movie is None:
             return json.dumps({ "result": "error" })
         else:
             return json.dumps({

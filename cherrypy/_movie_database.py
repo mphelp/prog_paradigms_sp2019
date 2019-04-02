@@ -26,6 +26,8 @@ class _movie_database:
         self.load_ratings(ratings_file)
         self.load_images(images_file)
 
+        print('number 6029: {}'.format(self.users[6029]))
+
     # Movies
     def load_movies(self, movie_file):
         # Format: mid::title::genre|genre|genre
@@ -54,6 +56,7 @@ class _movie_database:
 
     def get_movie(self, mid):
         # genres returned as string not list
+        #print("GET: mid {}: {}".format(mid, self.movies[mid]))
         try:
             mid = int(mid)
             return [self.movies[mid]['title'], \
@@ -78,7 +81,9 @@ class _movie_database:
             'genres': movie[1]
         }
         mid = int(mid)
+        print(temp)
         self.movies[mid] = temp
+        print(self.movies[mid])
 
     def delete_movie(self, mid):
         # account for KeyError in moviesController
@@ -129,18 +134,16 @@ class _movie_database:
         return list(self.users.keys())
 
     def set_user(self, uid, user):
-        if not isinstance(user[0], str) \
-            or not isinstance(user[1], (int, long)) \
-            or not isinstance(user[2], (int, long)) \
-            or not isinstance(user[3], str):
-            raise Exception('database function {} requires '.format(sys._getframe().f_code.co_name) + \
-                            'user\'s gender(str), age(int), occupationcode(int) and zipcode(str)')
-            return
+        #if not isinstance(user[0], str) \
+        #    or not isinstance(user[3], str):
+        #    raise Exception('database function {} requires '.format(sys._getframe().f_code.co_name) + \
+        #                    'user\'s gender(str), age(int), occupationcode(int) and zipcode(str)')
+        #    return
 
         temp = {
             'gender': user[0],
-            'age': user[1],
-            'occupationcode': user[2],
+            'age': int(user[1]),
+            'occupationcode': int(user[2]),
             'zipcode': user[3]
         }
         uid = int(uid)

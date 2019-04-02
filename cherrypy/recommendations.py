@@ -19,7 +19,7 @@ class RecommendationsController:
             })
 
     def PUT_RECOMMENDATION(self, user_id):
-        recommendation = json.loads(str(cherrypy.request.body.read()))
+        recommendation = json.loads(cherrypy.request.body.read())
         print(recommendation)
         self.mdb.set_recommendation(recommendation['movie_id'], \
             user_id, recommendation['rating'])

@@ -25,7 +25,7 @@ class UsersController:
         })
 
     def POST_USERS(self):
-        user = json.loads(str(cherrypy.request.body.read()),
+        user = json.loads(cherrypy.request.body.read(),
             encoding='latin-1')
         # Example format of user:
         # {
@@ -40,7 +40,7 @@ class UsersController:
                 user['age'], user['occupationcode'], user['zipcode']])
             return json.dumps({ "result": "success", "id": new_user_id })
         except Exception:
-            return json.dumps({ "result": "failure" })
+            return json.dumps({ "result": "error" })
 
     def DELETE_USERS(self):
         for user_id in self.mdb.get_users():
@@ -54,7 +54,7 @@ class UsersController:
         user_id = int(user_id)
         user = self.mdb.get_user(user_id)
         if user is None: 
-            return json.dumps({ "result": "failure" })
+            return json.dumps({ "result": "error" })
         else:
             return json.dumps({
                 "gender": user[0],
@@ -67,8 +67,10 @@ class UsersController:
 
 
     def PUT_USER(self, user_id):
-        user = json.loads(str(cherrypy.request.body.read()),
+        user = json.loads(cherrypy.request.body.read(), \
             encoding='latin-1')
+        print('inside of put user')
+        #print(user)
         # Example format of user:
         # {
         #   'gender': 'F',
@@ -76,12 +78,19 @@ class UsersController:
         #   'occupationcode': 1333,
         #   'zipcode': '5555-4444'
         # }
-        try:
-            self.mdb.set_user(user_id, [user['gender'], \
-                user['age'], user['occupationcode'], user['zipcode']])
-            return json.dumps({ "result": "success" }) 
-        except Exception:
-            return json.dumps({ "result": "failure" })
+        #try:
+        #    self.mdb.set_user(user_id, [user['gender'], \
+        #        user['age'], user['occupationcode'], user['zipcode']])
+        #    return json.dumps({ "result": "success" }) 
+        #except Exception as e:
+        #    print(str(e))
+        #    return json.dumps({ 
+        #       "result": "error",
+        #       "msg": str(e)
+        #    })
+        self.mdb.set_user(user_id, [user['gender'], \
+             user['age'], user['occupationcode'], user['zipcode']])
+        return json.dumps({ "result": "success" })
 
 
     def DELETE_USER(self, user_id):
@@ -89,5 +98,5 @@ class UsersController:
             self.mdb.delete_user(user_id)
             return json.dumps({ "result": "success" })
         except KeyError:
-            return json.dumps({ "result": "failure" })
+            return json.dumps({ "result": "error" })
 
