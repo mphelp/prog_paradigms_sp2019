@@ -1,41 +1,41 @@
 // Author: Matthew Phelps
 // Date:   Apr 8 2019
 
-var Item = {
-	addToDocument: function(){
+// FUNCTION DEFINITIONS
+function Item(){
+	// Sort of abstract func
+	this.addToDocument = function(){
 		document.body.appendChild(this.item);
 	}
 }
 
-var Label = {
-	createLabel: function(text, id){
+function Label(){
+	this.createLabel = function(text, id){
 		this.item = document.createElement("P");
 
 		this.item.setAttribute("id", id);
-		//var t = document.createTextNode(text);
-		//this.item.appendChild(t);
 		this.item.innerHTML = text;
-	},
-	setText: function(text){
+	}
+	this.setText = function(text){
 		this.item.innerHTML = text;
 	}
 }
-Label.__proto__ = Item
+Label.prototype = new Item()
 
-var Button = {
-	createButton: function(text, id){
+function Button(){
+	this.createButton = function(text, id){
 		this.item = document.createElement("Button");
 
 		this.item.setAttribute("id", id);
 		this.item.innerText = text;
-	},
-	addClickEventHandler: function(handler, args){
+	}
+	this.addClickEventHandler = function(handler, args){
 		this.item.onmouseup = function(){
 			handler(args);
 		}
 	}
 }
-Button.__proto__ = Item
+Button.prototype = new Item()
 
 function changeText(args){
 	var text = args[0];
@@ -43,11 +43,14 @@ function changeText(args){
 	label.item.innerText = text;
 }
 // Use them
-Button.createButton("Click Here", "theButton");
-args = ["Matthew Phelps", Label];
-Button.addClickEventHandler(changeText, args);
-Button.addToDocument();
+button = new Button();
+label  = new Label();
 
-Label.createLabel("guess who", "theLabel");
-Label.addToDocument();
+button.createButton("Click Here", "thebutton");
+args = ["Matthew Phelps", label];
+button.addClickEventHandler(changeText, args);
+button.addToDocument();
+
+label.createLabel("guess who", "theLabel");
+label.addToDocument();
 
