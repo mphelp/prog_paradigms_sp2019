@@ -38,19 +38,25 @@ function Button(){
 Button.prototype = new Item()
 
 function changeText(args){
-	var text = args[0];
-	var label = args[1];
-	label.item.innerText = text;
+	var label = args[0];
+	var addr  = args[1];
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', addr, true);
+	xhr.send(null);
+	xhr.onload = function(e){
+		label.item.innerText = xhr.responseText;
+	}
 }
+
 // Use them
 button = new Button();
 label  = new Label();
 
-button.createButton("Click Here", "thebutton");
-args = ["Matthew Phelps", label];
-button.addClickEventHandler(changeText, args);
-button.addToDocument();
-
 label.createLabel("guess who", "theLabel");
 label.addToDocument();
+
+button.createButton("Click Here", "thebutton");
+args = [label, "http://student04.cse.nd.edu:51001/movies/32"];
+button.addClickEventHandler(changeText, args);
+button.addToDocument();
 
