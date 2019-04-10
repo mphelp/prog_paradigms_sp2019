@@ -61,10 +61,12 @@ function Dropdown(){
 		}
 	}
 	this.getSelected = function(){
-		return this.item.value;
+		return this.item.selectedIndex + 1;
 	}
 }
 Dropdown.prototype = new Item()
+
+var movie_id;
 
 function changeText(args){
 	var label = args[0];
@@ -74,17 +76,30 @@ function changeText(args){
 	xhr.send(null);
 	xhr.onload = function(e){
 		label.item.innerText = xhr.responseText;
+		movie_id = Number(JSON.parse(xhr.responseText)['id']);
+		console.log(movie_id);
 	}
 }
 function sendVote(args){
 	var drop = args[0]; 
-	var addr  = args[1];
-	var xhr = new XMLHttpReqeust();
-	xhr.open('PUT', addr, true);
-	xhr.send(null);
-	xhr.onload = function(e){
+	var addr = args[1];
+	var movie_id = args[2];
+	if (!movie_id){
+		console.error("Movie id not been retrieved. Cannot send vote yet");
+		return
+	}
+
+	var req = new XMLHttpRequest();
+	req.open('PUT', addr, true);
+	var data = {}
+	data[movie_id] = drop.getSelected();
+	console.log(data)
+	
+	req.send(data);
+	req.onload = function(e){
 		// Do nothing currently
-		console.log(xhr.responseText);
+		console.log('Response:\n ');
+		console.log(req.responseText);
 	}
 }
 
