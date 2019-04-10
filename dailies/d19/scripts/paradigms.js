@@ -92,10 +92,11 @@ function sendVote(args){
 	var req = new XMLHttpRequest();
 	req.open('PUT', addr, true);
 	var data = {}
-	data[movie_id] = drop.getSelected();
-	console.log(data)
+	data['movie_id'] = movie_id; 
+	data['rating']   = drop.getSelected();
+	console.log(JSON.stringify(data))
 	
-	req.send(data);
+	req.send(JSON.stringify(data));
 	req.onload = function(e){
 		// Do nothing currently
 		console.log('Response:\n ');
