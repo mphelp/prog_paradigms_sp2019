@@ -7,7 +7,19 @@ function Item(){
 	this.addToDocument = function(){
 		document.body.appendChild(this.item);
 	}
+	this.addTo = function(node){
+		node.item.appendChild(this.item);
+	}
 }
+
+function MyDiv(){
+	this.createMyDiv = function(id){
+		this.item = document.createElement("DIV");
+
+		this.item.setAttribute("id", id);
+	}
+}
+MyDiv.prototype = new Item()
 
 function Label(){
 	this.createLabel = function(text, id){
@@ -37,6 +49,23 @@ function Button(){
 }
 Button.prototype = new Item()
 
+function Dropdown(){
+	this.createDropdown = function(dict, id, selected){
+		this.item = document.createElement("SELECT");
+
+		this.item.setAttribute("id", id);
+		for (var index in dict){
+			var option = document.createElement("OPTION");
+			option.text = dict[index];
+			this.item.add(option);
+		}
+	}
+	this.getSelected = function(){
+		return this.item.value;
+	}
+}
+Dropdown.prototype = new Item()
+
 function changeText(args){
 	var label = args[0];
 	var addr  = args[1];
@@ -47,16 +76,15 @@ function changeText(args){
 		label.item.innerText = xhr.responseText;
 	}
 }
-
-// Use them
-// button = new Button();
-// label  = new Label();
-
-// label.createLabel("guess who", "theLabel");
-// label.addToDocument();
-
-// button.createButton("Click Here", "thebutton");
-// args = [label, "http://student04.cse.nd.edu:51001/movies/32"];
-// button.addClickEventHandler(changeText, args);
-// button.addToDocument();
+function sendVote(args){
+	var drop = args[0]; 
+	var addr  = args[1];
+	var xhr = new XMLHttpReqeust();
+	xhr.open('PUT', addr, true);
+	xhr.send(null);
+	xhr.onload = function(e){
+		// Do nothing currently
+		console.log(xhr.responseText);
+	}
+}
 
