@@ -18,6 +18,11 @@ if __name__ == '__main__':
     images_file = "./dat/images.dat"
     mdb = _movie_database(movie_file, users_file, ratings_file, images_file)
 
+    # PURE RATINGS TESTING
+    user_id = 32
+    for movie_id in mdb.users:
+        print(mdb.ratings[movie_id][user_id])
+
     # Server setup
     dispatcher = cherrypy.dispatch.RoutesDispatcher()
 

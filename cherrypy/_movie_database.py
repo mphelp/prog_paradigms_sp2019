@@ -170,10 +170,10 @@ class _movie_database:
                 rating = int(attr[2])
                 # Set attr
                 try:
-                    self.ratings[mid][uid] = rating
+                    self.ratings[uid][mid] = rating
                 except KeyError:
-                    self.ratings[mid] = {}
-                    self.ratings[mid][uid] = rating
+                    self.ratings[uid] = {}
+                    self.ratings[uid][mid] = rating
 
 
     def print_rating(self, mid, uid):
