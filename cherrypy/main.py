@@ -23,23 +23,16 @@ if __name__ == '__main__':
     images_file = "./dat/images.dat"
     mdb = _movie_database(movie_file, users_file, ratings_file, images_file)
 
-    # PURE RATINGS TESTING
-    #for movie_id in mdb.movies:
-    #    print(mdb.get_rating(movie_id))
-
-    # Server setup
     dispatcher = cherrypy.dispatch.RoutesDispatcher()
-
-    # studentconf = { 'global': {'server.socket_host':'student04.cse.nd.edu',
-    #                     'server.socket_port':51043},
-    #           '/':{'request.dispatch':dispatcher}}
-    #OLD conf = { 
-#'global': {'server.socket_host':'student04.cse.nd.edu',
-   #                     'server.socket_port':51043},
-    #'/':{'request.dispatch':dispatcher}}
-    conf = { 'global': {'server.socket_host':'student04.cse.nd.edu',
-                         'server.socket_port':51043},
-              '/': {"request.dispatch": dispatcher, "tools.CORS.on": True}
+    conf = { 
+        'global': {
+            'server.socket_host':'student04.cse.nd.edu',
+            'server.socket_port':51043
+        },
+        '/': {
+            "request.dispatch": dispatcher, 
+            "tools.CORS.on": True
+        }
     }
 
     ## Controllers:
@@ -106,26 +99,4 @@ if __name__ == '__main__':
     cherrypy.tools.CORS = cherrypy.Tool("before_handler", CORS)
     app = cherrypy.tree.mount(None, config=conf)
     cherrypy.quickstart(app)
-
-# PREVIOUS TESTS:
-## Testing movies:
-    # mdb.load_movies(movie_file)
-    # mdb.set_movie(5000, ['James at the Laundromat', ['Action', 'Thriller']])
-    # for i in mdb.get_movies():
-    #     mdb.print_movie(i)
-    # mdb.delete_movie(5000)
-    # mdb.print_movie(5000)
-
-    ## Testing users:
-    # mdb.load_users(users_file)
-    # mdb.set_user(9999, ['M', 20, 999, 99999])
-    # for i in mdb.get_users():
-    #     mdb.print_user(i)
-    # mdb.delete_user(9999)
-    # mdb.print_user(9999)
-
-    ## Testing ratings:
-    # mdb.load_ratings(ratings_file)
-    # mdb.delete_all_ratings()
-    # print(mdb.ratings)
 
