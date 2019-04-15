@@ -6,7 +6,7 @@ DownButton  = new Button();
 TitleLabel  = new Label();
 MovieImg    = new Img();
 RatingLabel = new Label();
-MyContainer       = new MyDiv();
+MyContainer = new MyDiv();
 
 // Create
 TitleLabel.createLabel("Movie Title", "titleLabel");
@@ -21,10 +21,6 @@ UpButton.addTo(MyContainer);
 MovieImg.addTo(MyContainer);
 DownButton.addTo(MyContainer);
 
-// Add
-TitleLabel.addToDocument();
-MyContainer.addToDocument();
-RatingLabel.addToDocument();
 
 // Testing movie img
 let user_id = 149
@@ -42,7 +38,15 @@ args = [
   ImgLocation,
   RatingAddr
 ]
-getMovieRecommendation(args)
+getMovieRecommendation(args); // retrieve first recommendation
+
+UpButton.addClickEventHandler(voteUp, args);
+DownButton.addClickEventHandler(voteDown, args);
+
+// Add
+TitleLabel.addToDocument();
+MyContainer.addToDocument();
+RatingLabel.addToDocument();
 
 // label.createLabel("guess who", "theLabel");
 // label.addToDocument();
