@@ -28,7 +28,7 @@ RatingLabel.addToDocument();
 
 // Testing movie img
 args = [MovieImg,
-  "http://student04.cse.nd.edu:51001/movies/989",
+  "http://student04.cse.nd.edu:51043/movies/990",
   "https://www3.nd.edu/~cmc/teaching/cse30332/images"]
 getMovieRecommendation(args)
 
