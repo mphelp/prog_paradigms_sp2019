@@ -19,8 +19,8 @@ if __name__ == '__main__':
     mdb = _movie_database(movie_file, users_file, ratings_file, images_file)
 
     # PURE RATINGS TESTING
-    for movie_id in mdb.movies:
-        print(mdb.get_rating(movie_id))
+    #for movie_id in mdb.movies:
+    #    print(mdb.get_rating(movie_id))
 
     # Server setup
     dispatcher = cherrypy.dispatch.RoutesDispatcher()
