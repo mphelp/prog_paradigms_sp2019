@@ -189,26 +189,15 @@ class _movie_database:
 
     def get_rating(self, mid):
         mid = int(mid)
-        try:
-            sampleRating = self.ratings[1][mid] # to check if ratings exists
-        except KeyError:
-            return None
-        ratings = []
-        try:
-            return mean([list(mid.values())[0] for uid, mid in self.ratings.items() \
-                if list(mid.keys())[0] == mid])
-        except KeyError:
+        getratings = []
+        for uid, midDict in self.ratings.items():
+            rating = midDict.get(mid)
+            if rating:
+                getratings.append(rating)
+        if len(getratings):
+            return mean(getratings)
+        else:
             return 0
-        ##try:
-        ##     for uid, mid in self.ratings.items():
-        ##           first, second = next(iter(mid.items()))
-        ##           ratings.append(float(second)) 
-        #####ratings = [float(next(iter(list(mid.items())[0]))) for uid, mid in self.ratings.items()]
-        #ratings = [(uid, rating)[1] for uid, rating in self.ratings[mid].items()]
-        ##     print('avg: {}'.format(mean(ratings)))
-        # return mean(ratings)
-        #except KeyError:
-        #     return 0
 
     def get_highest_rated_movie(self):
         bestRating = 1
@@ -298,28 +287,12 @@ class _movie_database:
         self.ratings = {}
 
     def get_recommendation(self, uid):
-        '''
-        bestRating = 1
-        bestRatedMovie = None
         uid = int(uid)
-        # User not exist
-        if self.get_user(uid) == None:
-            return None
-
-        for mid in self.movies.keys():
-            rating = self.get_rating(mid)
-            if rating > bestRating and self.get_user_movie_rating(mid, uid) is None:
-                bestRating = rating
-                bestRatedMovie = mid
-        '''
-        #sortedMovies = sorted(self.get_movies(), key=lambda mid: 0 if self.get_rating(mid) is None else self.get_rating(mid), reverse=True)
-        ##print(sortedMovies[0])
-        ##print(self.get_user_movie_rating(787, int(uid)))
-        #for mid in sortedMovies:
-        #    if self.get_user_movie_rating(int(mid), int(uid)) == None:
-        #        return mid
-        ##self.set_recommendation(bestRatedMovie, uid, bestRating)
-        #return None
+        sortedMovies = sorted(self.movies.keys(), key=lambda mid: self.get_rating(mid), reverse=True)
+        for mid in sortedMovies:
+            if self.get_user_movie_rating(mid, uid) is None:
+                return mid
+        return None
 
     def set_recommendation(self, mid, uid, rating):
         try:
