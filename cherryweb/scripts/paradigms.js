@@ -90,16 +90,16 @@ function changeText(args){
 	}
 }
 function getMovieRecommendation(args){
-  var movieImg = args[0];
-  var movieAddr = args[1];
-  var imgAddr   = args[2];
+  var movieImg  = args[0]; // object
+  var movieAddr = args[1]; // movie address
+  var imgLocation   = args[2]; // image name
   var xhr = new XMLHttpRequest();
 	xhr.open('GET', movieAddr, true);
 	xhr.send(null);
 	xhr.onload = function(e){
     // label.item.innerText = xhr.responseText;
     let src = JSON.parse(xhr.responseText)['img'];
-    let imgUrl = imgAddr + src;
+    let imgUrl = imgLocation + src;
     console.log(imgUrl);
     movieImg.item.src = imgUrl; // set src
 	}

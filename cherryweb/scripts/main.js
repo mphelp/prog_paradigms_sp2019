@@ -26,7 +26,11 @@ TitleLabel.addToDocument();
 MyContainer.addToDocument();
 RatingLabel.addToDocument();
 
-
+// Testing movie img
+args = [MovieImg,
+  "http://student04.cse.nd.edu:51001/movies/989",
+  "https://www3.nd.edu/~cmc/teaching/cse30332/images"]
+getMovieRecommendation(args)
 
 // label.createLabel("guess who", "theLabel");
 // label.addToDocument();
