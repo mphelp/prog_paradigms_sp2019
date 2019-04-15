@@ -9,6 +9,10 @@ from ratings import RatingsController
 from reset import ResetController
 from recommendations import RecommendationsController
 
+def CORS():
+		cherrypy.response.headers["Access-Control-Allow-Origin"] = "*"
+		cherrypy.response.headers["Access-Control-Allow-Methods"] = "GET, PUT, POST, OPTIONS, DELETE"
+
 # web services
 if __name__ == '__main__':
     # Backend setup
@@ -28,10 +32,15 @@ if __name__ == '__main__':
     # studentconf = { 'global': {'server.socket_host':'student04.cse.nd.edu',
     #                     'server.socket_port':51043},
     #           '/':{'request.dispatch':dispatcher}}
-    conf = { 'global': {'server.socket_host':'student04.cse.nd.edu',
-                        'server.socket_port':51043},
-              '/':{'request.dispatch':dispatcher}}
-
+    #OLD conf = { 
+		#			'global': {'server.socket_host':'student04.cse.nd.edu',
+   	#                     'server.socket_port':51043},
+    #		'/':{'request.dispatch':dispatcher}}
+   	conf = { 
+				'global': {'server.socket_host':'student04.cse.nd.edu',
+   	                     'server.socket_port':51043},
+				'/': {"request.dispatch": dispatcher, "tools.CORS.on": True}
+		}
 
     ## Controllers:
     moviesController  = MoviesController(mdb)
@@ -88,9 +97,13 @@ if __name__ == '__main__':
     dispatcher.connect('resetP', '/reset/:movie_id', controller=resetController, 
         action='PUT_RESET_MOVIE', conditions=dict(method=['PUT']))
 
+		corsController = CorsController()
+
+		dispatcher.connect('cors', '/recommendations/:uid', controller=corsController, action="GET_OPTIONS", conditions=dict(method=["OPTION"]))
 
     ## Start
     cherrypy.config.update(conf)
+		cherrypy.tools.CORS = cherrypy.Tool("before_handler", CORS)
     app = cherrypy.tree.mount(None, config=conf)
     cherrypy.quickstart(app)
 
