@@ -76,20 +76,7 @@ function Img(){
 }
 Img.prototype = new Item()
 
-var movie_id;
 
-function changeText(args){
-	var label = args[0];
-	var addr  = args[1];
-	var xhr = new XMLHttpRequest();
-	xhr.open('GET', addr, true);
-	xhr.send(null);
-	xhr.onload = function(e){
-		label.item.innerText = xhr.responseText;
-		movie_id = Number(JSON.parse(xhr.responseText)['id']);
-		console.log(movie_id);
-	}
-}
 function getMovieRecommendation(args){
   let user_id = args[0];
   let recAddr = args[1];
@@ -137,13 +124,6 @@ function setMovieInfo(args, res){
 }
 
 function voteUp(args){
-	// var drop = args[0]; 
-	// var addr = args[1];
-	// var movie_id = args[2];
-	// if (!movie_id){
-	// 	console.error("Movie id not been retrieved. Cannot send vote yet");
-	// 	return
-  // }
   let user_id = args[0];
   let recAddr = args[1];
   let movieImg    = args[2]; // object
@@ -170,13 +150,6 @@ function voteUp(args){
 }
 
 function voteDown(args){
-	// var drop = args[0]; 
-	// var addr = args[1];
-	// var movie_id = args[2];
-	// if (!movie_id){
-	// 	console.error("Movie id not been retrieved. Cannot send vote yet");
-	// 	return
-  // }
   let user_id = args[0];
   let recAddr = args[1];
   let movieImg    = args[2]; // object
