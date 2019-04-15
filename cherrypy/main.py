@@ -21,6 +21,7 @@ if __name__ == '__main__':
     ratings_file = "./dat/ratings.dat"
     images_file = "./dat/images.dat"
     mdb = _movie_database(movie_file, users_file, ratings_file, images_file)
+    print(mdb.get_user_movie_rating(787, 149))
 
     # PURE RATINGS TESTING
     #for movie_id in mdb.movies:

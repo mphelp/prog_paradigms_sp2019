@@ -90,19 +90,45 @@ function changeText(args){
 	}
 }
 function getMovieRecommendation(args){
-  var movieImg  = args[0]; // object
-  var movieAddr = args[1]; // movie address
-  var imgLocation   = args[2]; // image name
+  var user_id = args[0];
+  var recAddr = args[1];
+  var xhr3 = new XMLHttpRequest();
+  xhr3.open('GET', recAddr + user_id, true);
+  xhr3.send(null);
+  xhr3.onload = function(e){
+    let res = JSON.parse(xhr3.responseText);
+    console.log(res);
+    // set movie info
+    setMovieInfo(args, res);
+  }
+}
+function setMovieInfo(args, res){
+  var movieImg    = args[2]; // object
+  var movieTitle  = args[3]; // object
+  var movieRating = args[4]; // object
+  var movieAddr   = args[5]; // movie address
+  var imgLocation = args[6]; // image name
+  var ratingAddr  = args[7]; // rating address
+
   var xhr = new XMLHttpRequest();
-	xhr.open('GET', movieAddr, true);
+	xhr.open('GET', movieAddr + res['movie_id'], true);
 	xhr.send(null);
 	xhr.onload = function(e){
     // label.item.innerText = xhr.responseText;
-    let src = JSON.parse(xhr.responseText)['img'];
-    let imgUrl = imgLocation + src;
-    console.log(imgUrl);
+    var res = JSON.parse(xhr.responseText);
+    var imgUrl = imgLocation + res['img'];
+    //console.log(imgUrl);
     movieImg.item.src = imgUrl; // set src
+    movieTitle.item.innerText = res['title']; // set title
 	}
+  var xhr2 = new XMLHttpRequest();
+  xhr2.open('GET', ratingAddr + res['movie_id'], true);
+  xhr2.send(null);
+  xhr2.onload = function(e){
+    var res2 = JSON.parse(xhr2.responseText);
+    console.log(res2);
+    movieRating.item.innerText = res2['rating']; // set rating
+  }
 }
 function sendVote(args){
 	var drop = args[0]; 

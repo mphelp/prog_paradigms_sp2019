@@ -27,9 +27,21 @@ MyContainer.addToDocument();
 RatingLabel.addToDocument();
 
 // Testing movie img
-args = [MovieImg,
-  "http://student04.cse.nd.edu:51043/movies/990",
-  "https://www3.nd.edu/~cmc/teaching/cse30332/images"]
+let user_id = 149
+let MovieAddr = "http://student04.cse.nd.edu:51043/movies/";
+let RecAddr = "http://student04.cse.nd.edu:51043/recommendations/";
+let ImgLocation  = "https://www3.nd.edu/~cmc/teaching/cse30332/images";
+let RatingAddr = "http://student04.cse.nd.edu:51043/ratings/";
+args = [
+  user_id,
+  RecAddr,
+  MovieImg,
+  TitleLabel,
+  RatingLabel,
+  MovieAddr,
+  ImgLocation,
+  RatingAddr
+]
 getMovieRecommendation(args)
 
 // label.createLabel("guess who", "theLabel");
