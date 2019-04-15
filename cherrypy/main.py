@@ -8,6 +8,7 @@ from users import UsersController
 from ratings import RatingsController
 from reset import ResetController
 from recommendations import RecommendationsController
+from cors import CorsController
 
 def CORS():
 		cherrypy.response.headers["Access-Control-Allow-Origin"] = "*"
@@ -33,14 +34,13 @@ if __name__ == '__main__':
     #                     'server.socket_port':51043},
     #           '/':{'request.dispatch':dispatcher}}
     #OLD conf = { 
-		#			'global': {'server.socket_host':'student04.cse.nd.edu',
-   	#                     'server.socket_port':51043},
-    #		'/':{'request.dispatch':dispatcher}}
-   	conf = { 
-				'global': {'server.socket_host':'student04.cse.nd.edu',
-   	                     'server.socket_port':51043},
-				'/': {"request.dispatch": dispatcher, "tools.CORS.on": True}
-		}
+#'global': {'server.socket_host':'student04.cse.nd.edu',
+   #                     'server.socket_port':51043},
+    #'/':{'request.dispatch':dispatcher}}
+    conf = { 'global': {'server.socket_host':'student04.cse.nd.edu',
+                         'server.socket_port':51043},
+              '/': {"request.dispatch": dispatcher, "tools.CORS.on": True}
+    }
 
     ## Controllers:
     moviesController  = MoviesController(mdb)
@@ -97,13 +97,13 @@ if __name__ == '__main__':
     dispatcher.connect('resetP', '/reset/:movie_id', controller=resetController, 
         action='PUT_RESET_MOVIE', conditions=dict(method=['PUT']))
 
-		corsController = CorsController()
+    corsController = CorsController()
 
-		dispatcher.connect('cors', '/recommendations/:uid', controller=corsController, action="GET_OPTIONS", conditions=dict(method=["OPTION"]))
+    dispatcher.connect('cors', '/recommendations/:uid', controller=corsController, action="GET_OPTIONS", conditions=dict(method=["OPTION"]))
 
     ## Start
     cherrypy.config.update(conf)
-		cherrypy.tools.CORS = cherrypy.Tool("before_handler", CORS)
+    cherrypy.tools.CORS = cherrypy.Tool("before_handler", CORS)
     app = cherrypy.tree.mount(None, config=conf)
     cherrypy.quickstart(app)
 
