@@ -1,7 +1,7 @@
 p {
   text-align: center
 }
-#centerparent {
+#containerparent {
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;

@@ -66,6 +66,15 @@ function Dropdown(){
 }
 Dropdown.prototype = new Item()
 
+function Img(){
+  this.createImg = function(id){
+    this.item = document.createElement("IMG");
+
+    this.item.setAttribute("id", id);
+  }
+}
+Img.prototype = new Item()
+
 var movie_id;
 
 function changeText(args){
