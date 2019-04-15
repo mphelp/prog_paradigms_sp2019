@@ -155,7 +155,7 @@ function voteUp(args){
 
 
 	let req = new XMLHttpRequest();
-	req.open('PUT', recAddr, true);
+	req.open('PUT', recAddr + user_id, true);
 	let data = {}
 	data['movie_id'] = movieImg.movie_id; 
 	data['rating']   = 5;
