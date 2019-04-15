@@ -7,14 +7,12 @@ TitleLabel  = new Label();
 MovieImg    = new Img();
 RatingLabel = new Label();
 MyContainer       = new MyDiv();
-MyContainerparent = new MyDiv();
 
 // Create
 TitleLabel.createLabel("Movie Title", "titleLabel");
 RatingLabel.createLabel("Movie Rating", "ratingLabel");
 
 MyContainer.createMyDiv("container");
-MyContainerparent.createMyDiv("containerparent");
 UpButton.createButton("UP", "upbutton");
 MovieImg.createImg("movieimg");
 DownButton.createButton("DOWN", "downbutton");
@@ -22,11 +20,10 @@ DownButton.createButton("DOWN", "downbutton");
 UpButton.addTo(MyContainer);
 MovieImg.addTo(MyContainer);
 DownButton.addTo(MyContainer);
-MyContainer.addTo(MyContainerparent);
 
 // Add
 TitleLabel.addToDocument();
-MyContainerparent.addToDocument();
+MyContainer.addToDocument();
 RatingLabel.addToDocument();
 
 

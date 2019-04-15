@@ -7,8 +7,9 @@ p {
   margin-right: auto;
 }
 #container {
-  width: 100%;
   max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
   flex-direction: row;
   display: flex;
   align-items: center;

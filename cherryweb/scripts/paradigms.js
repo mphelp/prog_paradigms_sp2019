@@ -89,6 +89,21 @@ function changeText(args){
 		console.log(movie_id);
 	}
 }
+function getMovieRecommendation(args){
+  var movieImg = args[0];
+  var movieAddr = args[1];
+  var imgAddr   = args[2];
+  var xhr = new XMLHttpRequest();
+	xhr.open('GET', movieAddr, true);
+	xhr.send(null);
+	xhr.onload = function(e){
+    // label.item.innerText = xhr.responseText;
+    let src = JSON.parse(xhr.responseText)['img'];
+    let imgUrl = imgAddr + src;
+    console.log(imgUrl);
+    movieImg.item.src = imgUrl; // set src
+	}
+}
 function sendVote(args){
 	var drop = args[0]; 
 	var addr = args[1];
