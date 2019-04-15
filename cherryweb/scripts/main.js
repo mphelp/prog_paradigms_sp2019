@@ -1,41 +1,50 @@
 // Matthew Phelps
 
-button = new Button();
-label  = new Label();
-label2 = new Label();
-drop   = new Dropdown();
-mydiv  = new MyDiv();
-vote   = new Button();
+// Initialize
+UpButton    = new Button();
+DownButton  = new Button();
+TitleLabel  = new Label();
+MovieImg    = new Img();
+RatingLabel = new Label();
+MyContainer = new MyDiv();
 
-label.createLabel("guess who", "theLabel");
-label.addToDocument();
+// Create
+TitleLabel.createLabel("Movie Title", "titleLabel");
+RatingLabel.createLabel("Movie Rating", "ratingLabel");
 
-button.createButton("Click Here", "thebutton");
-MOVIE_ID = 32
-args = [label, "http://student04.cse.nd.edu:51001/movies/"+MOVIE_ID, MOVIE_ID];
-button.addClickEventHandler(changeText, args);
-button.addToDocument();
+MyContainer.createMyDiv("container");
+UpButton.createButton("UP", "upbutton");
+MovieImg.createImg("movieimg");
+DownButton.createButton("DOWN", "downbutton");
 
-label2.createLabel("I thought this movie was ...", "theLabel2");
-label2.addToDocument();
+UpButton.addTo(MyContainer);
+MovieImg.addTo(MyContainer);
+DownButton.addTo(MyContainer);
 
+// Args
+let user_id = 149 // arbitrarily chosen
+let MovieAddr = "http://student04.cse.nd.edu:51043/movies/";
+let RecAddr = "http://student04.cse.nd.edu:51043/recommendations/";
+let ImgLocation  = "https://www3.nd.edu/~cmc/teaching/cse30332/images";
+let RatingAddr = "http://student04.cse.nd.edu:51043/ratings/";
+args = [
+  user_id,
+  RecAddr,
+  MovieImg,
+  TitleLabel,
+  RatingLabel,
+  MovieAddr,
+  ImgLocation,
+  RatingAddr
+]
+getMovieRecommendation(args); // retrieve first recommendation
 
-// Voting Div
-mydiv.createMyDiv();
-drop.createDropdown({ 
-	1: 'terrible',
-	2: 'subpar',
-	3: 'decent',
-	4: 'great',
-	5: 'fantastic'
-}, "thedrop", 1);
+// Click event handlers defined in paradigms.js
+UpButton.addClickEventHandler(voteUp, args);
+DownButton.addClickEventHandler(voteDown, args);
 
-vote.createButton("VOTE", "thevoter");
-let user_id = 32;
-voteargs = [drop, "http://student04.cse.nd.edu:51001/recommendations/32", MOVIE_ID];
-vote.addClickEventHandler(sendVote, voteargs);
-drop.addTo(mydiv);
-vote.addTo(mydiv);
-
-mydiv.addToDocument();
+// Add
+TitleLabel.addToDocument();
+MyContainer.addToDocument();
+RatingLabel.addToDocument();
 

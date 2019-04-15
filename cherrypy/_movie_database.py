@@ -219,7 +219,7 @@ class _movie_database:
         try:
             mid = int(mid)
             uid = int(uid)
-            rating = self.movies[uid][mid]
+            rating = self.ratings[uid][mid]
             return rating
         except KeyError:
             return None
