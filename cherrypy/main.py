@@ -99,7 +99,7 @@ if __name__ == '__main__':
 
     corsController = CorsController()
 
-    dispatcher.connect('cors', '/recommendations/:uid', controller=corsController, action="GET_OPTIONS", conditions=dict(method=["OPTION"]))
+    dispatcher.connect('cors', '/recommendations/:uid', controller=corsController, action="GET_OPTIONS", conditions=dict(method=["OPTIONS"]))
 
     ## Start
     cherrypy.config.update(conf)
