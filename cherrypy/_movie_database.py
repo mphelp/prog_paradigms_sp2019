@@ -171,6 +171,8 @@ class _movie_database:
                 uid = int(attr[0])
                 mid = int(attr[1])
                 rating = int(attr[2])
+                if uid == 149 and mid == 787:
+                    print('rating for 149 on 787 is '+str(rating))
                 # Set attr
                 try:
                     self.ratings[uid][mid] = rating
@@ -219,7 +221,7 @@ class _movie_database:
         try:
             mid = int(mid)
             uid = int(uid)
-            rating = self.movies[uid][mid]
+            rating = self.ratings[uid][mid]
             return rating
         except KeyError:
             return None
